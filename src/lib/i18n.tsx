@@ -1,15 +1,25 @@
-import { useEffect, useState } from "react";
+import {
+  createContext,
+  useCallback,
+  useContext,
+  useEffect,
+  useMemo,
+  useState,
+  type ReactNode,
+} from "react";
 import { en, pt, es } from "./translations";
 
 export type Lang = "pt" | "en" | "es";
 
-export const LANGS: Lang[] = ["pt", "en", "es"];
+export const LANGS: Lang[] = ["en", "pt", "es"];
 export const DEFAULT_LANG: Lang = "en";
 
 const STORAGE_KEY = "isa_melo_lang";
 
-export function getLangFromUrl(): Lang {
+/** Resolve the starting language once, from ?lang= then localStorage. */
+export function getInitialLang(): Lang {
   if (typeof window === "undefined") return DEFAULT_LANG;
+
   const params = new URLSearchParams(window.location.search);
   const q = params.get("lang")?.toLowerCase() as Lang | null;
   if (q && LANGS.includes(q)) {
@@ -20,23 +30,63 @@ export function getLangFromUrl(): Lang {
     }
     return q;
   }
+
   try {
     const stored = localStorage.getItem(STORAGE_KEY) as Lang | null;
     if (stored && LANGS.includes(stored)) return stored;
   } catch {
     /* ignore */
   }
+
   return DEFAULT_LANG;
 }
 
-export function useLang(): Lang {
-  const [lang, setLang] = useState<Lang>(DEFAULT_LANG);
+type LangContextValue = {
+  lang: Lang;
+  setLang: (next: Lang) => void;
+};
 
-  useEffect(() => {
-    setLang(getLangFromUrl());
+const LangContext = createContext<LangContextValue | null>(null);
+
+/**
+ * Holds the active language in React state so switching re-renders in place
+ * instead of navigating — no full browser reload, no flash of English.
+ */
+export const LangProvider = ({ children }: { children: ReactNode }) => {
+  const [lang, setLangState] = useState<Lang>(getInitialLang);
+
+  const setLang = useCallback((next: Lang) => {
+    setLangState(next);
+    try {
+      localStorage.setItem(STORAGE_KEY, next);
+    } catch {
+      /* ignore */
+    }
+    // Keep ?lang= in the address bar accurate for shareable links, but do it
+    // through history so the SPA never reloads.
+    if (typeof window !== "undefined") {
+      const url = new URL(window.location.href);
+      url.searchParams.set("lang", next);
+      window.history.replaceState({}, "", url);
+    }
   }, []);
 
-  return lang;
+  useEffect(() => {
+    document.documentElement.lang = lang;
+  }, [lang]);
+
+  const value = useMemo(() => ({ lang, setLang }), [lang, setLang]);
+
+  return <LangContext.Provider value={value}>{children}</LangContext.Provider>;
+};
+
+export function useLang(): Lang {
+  return useContext(LangContext)?.lang ?? DEFAULT_LANG;
+}
+
+export function useSetLang(): (next: Lang) => void {
+  const ctx = useContext(LangContext);
+  return ctx?.setLang ?? (() => undefined);
 }
 
 /* ------------------------------------------------------------------ */
@@ -53,11 +103,13 @@ export type Dict = {
     newsletter: string;
   };
   home: {
+    eyebrow: string;
     headline: [string, string];
     whatsapp: string;
     footer: string;
   };
   newsletter: {
+    eyebrow: string;
     headline: [string, string];
     namePh: string;
     phonePh: string;
@@ -75,10 +127,12 @@ export type Dict = {
     footer: string;
   };
   investment: {
+    eyebrow: string;
     step1Title: string;
     step1Options: string[];
     step2Title: string;
     step2Options: string[];
+    step3Title: string;
     step3Label: string;
     step3Ph: string;
     step4Label: string;
@@ -101,6 +155,12 @@ export type Dict = {
     footer: string;
   };
   consult: {
+    eyebrow: string;
+    title: string;
+    subtitle: string;
+    nameLabel: string;
+    phoneLabel: string;
+    emailLabel: string;
     namePh: string;
     phonePh: string;
     emailPh: string;
@@ -114,6 +174,7 @@ export type Dict = {
     phoneError: string;
     emailError: string;
     consentError: string;
+    reassurance: string;
     footer: string;
   };
   guide: {
@@ -148,8 +209,10 @@ export type Dict = {
     footer: string;
   };
   thankYou: {
+    eyebrow: string;
     line1: string;
     line2: string;
+    back: string;
     footer: string;
   };
   notFound: {

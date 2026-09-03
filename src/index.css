@@ -9,7 +9,7 @@ All colors MUST be HSL.
 @layer base {
   :root {
     /* Isadora De Melo Estates — luxury, refined, modern Gulf */
-    --background: 0 0% 100%; /* #ffffff primary background */
+    --background: 40 33% 98%; /* #faf8f5 warm page ground */
     --foreground: 0 0% 5.9%; /* #0f0f0f primary text / dark surface */
 
     --card: 0 0% 100%;
@@ -104,7 +104,28 @@ All colors MUST be HSL.
 
   body {
     @apply bg-background text-foreground;
+    font-feature-settings:
+      "cv02",
+      "cv03",
+      "cv04";
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
   }
+
+  /* Display type: optical sizing tuned for large headline settings */
+  .font-display {
+    font-optical-sizing: auto;
+    font-variation-settings: "SOFT" 0, "WONK" 0;
+  }
+}
+
+/* Small caps eyebrow label used above headings across the funnel */
+.eyebrow {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #a98849;
 }
 
 /* ---------------------------------------------------------------- */
@@ -115,40 +136,45 @@ All colors MUST be HSL.
   display: flex !important;
   align-items: center;
   width: 100% !important;
-  border: 1px solid hsl(var(--primary) / 0.6);
-  border-radius: 9999px;
-  background: transparent;
+  border: 1px solid #e6dfd3;
+  border-radius: 0.75rem;
+  background: #faf8f5;
   position: relative;
-  transition: border-color 0.2s ease;
+  transition:
+    border-color 0.2s ease,
+    background-color 0.2s ease,
+    box-shadow 0.2s ease;
 }
 
-.phone-input-container:hover,
 .phone-input-container:focus-within {
-  border-color: hsl(var(--primary));
+  border-color: #7b5ea7;
+  background: #ffffff;
+  box-shadow: 0 0 0 2px rgb(123 94 167 / 0.1);
 }
 
 /* Validation error state, set via the PhoneInputField `hasError` prop */
 .phone-input-container--error {
-  border-color: #f87171 !important;
+  border-color: #fca5a5 !important;
+  background: rgb(254 242 242 / 0.4) !important;
 }
 
-.phone-input-container--error:hover,
 .phone-input-container--error:focus-within {
-  border-color: #ef4444 !important;
+  border-color: #f87171 !important;
+  box-shadow: 0 0 0 2px rgb(239 68 68 / 0.1) !important;
 }
 
 /* Flag / country selector button inside pill */
 .phone-input-container .flag-dropdown {
   background: transparent !important;
   border: none !important;
-  border-radius: 9999px 0 0 9999px !important;
+  border-radius: 0.75rem 0 0 0.75rem !important;
   padding: 0 4px 0 8px !important;
 }
 
 .phone-input-flag-btn {
   background: transparent !important;
   border: none !important;
-  border-radius: 9999px 0 0 9999px !important;
+  border-radius: 0.75rem 0 0 0.75rem !important;
 }
 
 .phone-input-flag-btn:hover {
@@ -161,7 +187,7 @@ All colors MUST be HSL.
   display: flex !important;
   align-items: center !important;
   gap: 6px !important;
-  border-radius: 9999px 0 0 9999px !important;
+  border-radius: 0.75rem 0 0 0.75rem !important;
 }
 
 .phone-input-container .selected-flag .arrow {
@@ -183,9 +209,9 @@ All colors MUST be HSL.
   color: hsl(var(--foreground)) !important;
   font-size: 0.875rem !important;
   font-weight: 500 !important;
-  padding: 14px 20px 14px 52px !important;
+  padding: 14px 16px 14px 52px !important;
   height: auto !important;
-  border-radius: 9999px !important;
+  border-radius: 0.75rem !important;
 }
 
 .phone-input-field::placeholder {

@@ -1,18 +1,44 @@
 import { ISA_PHOTO_URL, SKYLINE_URL } from "@/lib/constants";
+import { cn } from "@/lib/utils";
 
-/** Isa's portrait blended over the Dubai skyline — reused on every split-layout page. */
-export const PhotoCollage = () => (
-  <div className="relative w-full max-w-sm lg:max-w-md xl:max-w-lg mx-auto overflow-hidden rounded-[2.5rem] shadow-[0_20px_60px_-25px_rgba(15,15,15,0.35)]">
+type PhotoCollageProps = {
+  className?: string;
+  /** Portrait frame height. Kept capped so the image column ends level with
+   *  the form column beside it instead of running hundreds of px past it. */
+  size?: "default" | "tall";
+};
+
+/**
+ * Isa's portrait in an editorial frame: a gold hairline offset behind the
+ * image, the Dubai skyline showing as a soft watermark. The skyline used to
+ * be layered *behind* an opaque portrait, so it never actually rendered.
+ */
+export const PhotoCollage = ({ className, size = "default" }: PhotoCollageProps) => (
+  <div className={cn("relative w-full max-w-[400px] mx-auto lg:mx-0", className)}>
+    {/* Gold offset frame */}
+    <div
+      aria-hidden="true"
+      className="absolute -inset-2 sm:-inset-3 translate-x-3 translate-y-3 rounded-[2rem] border border-[#c9a961]/45 pointer-events-none"
+    />
+
+    {/* Skyline watermark — now actually visible, sitting behind the frame */}
     <img
       src={SKYLINE_URL}
-      alt="Dubai skyline illustration"
-      className="absolute inset-x-0 bottom-0 w-full h-auto opacity-90 pointer-events-none select-none"
+      alt=""
+      aria-hidden="true"
+      className="absolute -bottom-8 -left-10 w-[135%] max-w-none opacity-[0.16] pointer-events-none select-none"
     />
-    <img
-      src={ISA_PHOTO_URL}
-      alt="Isa Melo, Dubai real estate consultant"
-      className="relative z-10 w-full mx-auto object-contain rounded-[2.5rem]"
-    />
+
+    <div className="relative overflow-hidden rounded-[2rem] bg-[#efe9df] shadow-[0_28px_60px_-30px_rgba(26,26,24,0.45)]">
+      <img
+        src={ISA_PHOTO_URL}
+        alt="Isa Melo, Dubai real estate consultant"
+        className={cn(
+          "w-full object-cover object-top",
+          size === "tall" ? "h-[440px] sm:h-[560px]" : "h-[380px] sm:h-[480px]",
+        )}
+      />
+    </div>
   </div>
 );
 

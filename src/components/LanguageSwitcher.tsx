@@ -1,40 +1,42 @@
-import { LANGS, useLang, type Lang } from "@/lib/i18n";
+import { LANGS, useLang, useSetLang, type Lang } from "@/lib/i18n";
 
-const LANG_META: Record<Lang, { flag: string; label: string }> = {
-  pt: { flag: "🇧🇷", label: "PT" },
-  en: { flag: "🇺🇸", label: "EN" },
-  es: { flag: "🇪🇸", label: "SP" },
+const LANG_LABEL: Record<Lang, string> = {
+  en: "EN",
+  pt: "PT",
+  es: "ES",
 };
 
+/**
+ * Segmented language control. Switching sets React state directly — no
+ * navigation, so the page never reloads. Flag emoji were dropped because
+ * Windows renders them as bare "US"/"BR" letter boxes.
+ */
 export const LanguageSwitcher = () => {
   const current = useLang();
-
-  const buildHref = (l: Lang) => {
-    if (typeof window === "undefined") return `/?lang=${l}`;
-    const { pathname, search } = window.location;
-    const params = new URLSearchParams(search);
-    params.set("lang", l);
-    return `${pathname}?${params.toString()}`;
-  };
+  const setLang = useSetLang();
 
   return (
-    <div className="flex items-center gap-2 flex-shrink-0">
+    <div
+      className="inline-flex items-center gap-0.5 p-0.5 rounded-full border border-[#e6dfd3] bg-white/70 backdrop-blur-sm flex-shrink-0"
+      role="group"
+      aria-label="Language"
+    >
       {LANGS.map((l) => {
-        const meta = LANG_META[l];
         const active = current === l;
         return (
-          <a
+          <button
             key={l}
-            href={buildHref(l)}
-            aria-current={active ? "true" : undefined}
-            className={
+            type="button"
+            onClick={() => setLang(l)}
+            aria-pressed={active}
+            className={`px-3 py-1.5 rounded-full text-[11px] font-semibold tracking-wide transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#7B5EA7]/30 ${
               active
-                ? "bg-[#7B5EA7] text-white text-xs font-semibold px-3.5 py-2 rounded-full transition-all flex items-center gap-1.5 shadow-sm"
-                : "bg-transparent hover:bg-[#7B5EA7]/10 border border-[#7B5EA7]/40 text-[#0f0f0f] text-xs font-semibold px-3.5 py-2 rounded-full transition-all flex items-center gap-1.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#7B5EA7]/40"
-            }
+                ? "bg-[#1a1a18] text-white shadow-sm"
+                : "text-[#6b6660] hover:text-[#1a1a18] hover:bg-[#1a1a18]/5"
+            }`}
           >
-            {meta.flag} {meta.label}
-          </a>
+            {LANG_LABEL[l]}
+          </button>
         );
       })}
     </div>

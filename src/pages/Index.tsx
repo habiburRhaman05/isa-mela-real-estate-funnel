@@ -1,9 +1,18 @@
 import React from "react";
-import { Instagram } from "lucide-react";
+import { Link } from "react-router-dom";
+import {
+  Instagram,
+  ArrowRight,
+  TrendingUp,
+  BookOpen,
+  CalendarCheck,
+  BellRing,
+} from "lucide-react";
 import { getDict, useLang } from "@/lib/i18n";
 import PageHeader from "@/components/PageHeader";
 import PageFooter from "@/components/PageFooter";
 import PhotoCollage from "@/components/PhotoCollage";
+import Container from "@/components/Container";
 import WhatsAppIcon from "@/components/icons/WhatsAppIcon";
 import { INSTAGRAM_URL, WHATSAPP_URL } from "@/lib/constants";
 
@@ -12,65 +21,76 @@ export const Index = () => {
   const t = getDict(lang);
 
   const navLinks = [
-    { href: "/investment", label: t.nav.invest },
-    { href: "/property-buyers-guide", label: t.nav.guide },
-    { href: "/consult-with-isa", label: t.nav.consult },
-    { href: "/newsletter", label: t.nav.newsletter },
+    { to: "/investment", label: t.nav.invest, icon: TrendingUp },
+    { to: "/property-buyers-guide", label: t.nav.guide, icon: BookOpen },
+    { to: "/consult-with-isa", label: t.nav.consult, icon: CalendarCheck },
+    { to: "/newsletter", label: t.nav.newsletter, icon: BellRing },
   ];
 
   return (
-    <div className="min-h-screen bg-[#ffffff] text-[#0f0f0f] flex flex-col">
+    <div className="min-h-screen bg-[#faf8f5] text-[#1a1a18] flex flex-col">
       <PageHeader lang={lang} />
 
-      {/* Split content */}
-      <div className="flex-1 w-full max-w-6xl mx-auto grid lg:grid-cols-2 gap-8 lg:gap-12 items-center px-4 sm:px-8 pb-8">
-        <PhotoCollage />
+      <main className="flex-1">
+        <Container className="grid lg:grid-cols-[minmax(0,420px)_minmax(0,1fr)] gap-10 lg:gap-16 xl:gap-20 items-center py-10 sm:py-14 lg:py-16">
+          <PhotoCollage size="tall" />
 
-        {/* Right: content */}
-        <div className="flex flex-col items-center lg:items-start justify-center">
-          <h1 className="text-2xl sm:text-4xl lg:text-5xl font-extrabold text-center lg:text-left leading-tight mb-8 text-[#0f0f0f] max-w-lg">
-            <span>{t.home.headline[0]}</span>{" "}
-            <span className="text-[#7B5EA7]">{t.home.headline[1]}</span>
-          </h1>
+          <div className="flex flex-col items-center lg:items-start text-center lg:text-left">
+            <div className="flex items-center gap-3 mb-5">
+              <span className="hidden lg:block w-8 h-px bg-[#c9a961]" />
+              <span className="eyebrow">{t.home.eyebrow}</span>
+            </div>
 
-          <div className="flex items-center gap-4 mb-8 justify-center lg:justify-start">
-            <a
-              href={INSTAGRAM_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="w-11 h-11 rounded-full bg-[#0f0f0f]/5 hover:bg-[#0f0f0f]/10 border border-[#7B5EA7]/40 flex items-center justify-center transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#7B5EA7]/40"
-              aria-label="Instagram"
-            >
-              <Instagram className="w-5 h-5 text-[#0f0f0f]" />
-            </a>
-            <a
-              href={WHATSAPP_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="bg-[#7B5EA7] hover:bg-[#6a4f96] hover:shadow-md active:scale-[0.98] text-white font-semibold px-6 py-3 rounded-full flex items-center gap-2 text-sm shadow-sm transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#7B5EA7]/40 focus-visible:ring-offset-2"
-            >
-              <WhatsAppIcon className="w-4 h-4 fill-current" />
-              {t.home.whatsapp}
-            </a>
-          </div>
+            <h1 className="font-display text-[2rem] sm:text-5xl xl:text-[3.35rem] font-normal leading-[1.08] tracking-[-0.02em] text-[#1a1a18] max-w-[19ch]">
+              {t.home.headline[0]}{" "}
+              <em className="not-italic text-[#7B5EA7]">
+                {t.home.headline[1]}
+              </em>
+            </h1>
 
-          <nav className="w-full max-w-md space-y-4">
-            {navLinks.map((link) => (
+            <div className="flex items-center gap-3 mt-8">
               <a
-                key={link.href}
-                href={`${link.href}?lang=${lang}`}
-                className="block w-full text-center border border-[#7B5EA7] hover:bg-[#7B5EA7] hover:shadow-md active:scale-[0.99] hover:text-white text-[#0f0f0f] rounded-full py-4 px-6 font-semibold text-sm sm:text-base transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#7B5EA7]/40 focus-visible:ring-offset-2"
+                href={WHATSAPP_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2.5 bg-[#1a1a18] hover:bg-[#7B5EA7] text-white font-semibold px-6 py-3.5 rounded-full text-sm transition-all duration-300 active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#7B5EA7]/40 focus-visible:ring-offset-2 focus-visible:ring-offset-[#faf8f5]"
               >
-                {link.label}
+                <WhatsAppIcon className="w-4 h-4 fill-current" />
+                {t.home.whatsapp}
               </a>
-            ))}
-          </nav>
-        </div>
-      </div>
+              <a
+                href={INSTAGRAM_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Instagram"
+                className="w-12 h-12 rounded-full border border-[#e6dfd3] bg-white hover:border-[#c9a961] flex items-center justify-center transition-all hover:scale-105 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#7B5EA7]/30"
+              >
+                <Instagram className="w-[18px] h-[18px] text-[#1a1a18]" />
+              </a>
+            </div>
 
-      <div className="w-full max-w-6xl mx-auto px-4 sm:px-8">
-        <PageFooter text={t.home.footer} />
-      </div>
+            <nav className="w-full max-w-lg mt-10 flex flex-col gap-2.5">
+              {navLinks.map(({ to, label, icon: Icon }) => (
+                <Link
+                  key={to}
+                  to={`${to}?lang=${lang}`}
+                  className="group flex items-center gap-4 bg-white border border-[#ece5d9] hover:border-[#c9a961] rounded-2xl px-5 py-4 transition-all duration-300 hover:shadow-[0_14px_30px_-20px_rgba(26,26,24,0.4)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#7B5EA7]/30 text-left"
+                >
+                  <span className="w-10 h-10 rounded-full bg-[#f5f1ea] group-hover:bg-[#7B5EA7] flex items-center justify-center flex-shrink-0 transition-colors duration-300">
+                    <Icon className="w-[18px] h-[18px] text-[#7B5EA7] group-hover:text-white transition-colors duration-300" />
+                  </span>
+                  <span className="flex-1 text-sm font-medium text-[#1a1a18] leading-snug">
+                    {label}
+                  </span>
+                  <ArrowRight className="w-4 h-4 text-[#b5aea4] group-hover:text-[#7B5EA7] group-hover:translate-x-1 transition-all duration-300 flex-shrink-0" />
+                </Link>
+              ))}
+            </nav>
+          </div>
+        </Container>
+      </main>
+
+      <PageFooter text={t.home.footer} />
     </div>
   );
 };

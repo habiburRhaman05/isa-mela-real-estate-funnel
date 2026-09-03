@@ -1,12 +1,21 @@
 import type { PropsWithChildren } from "react";
+import { cn } from "@/lib/utils";
 
 /**
- * Soft contained card behind every form/quiz column so it reads as a
- * deliberate module instead of floating loose on white. Restrained on
- * purpose: tint + hairline border + soft shadow, no gradients or glass.
+ * Elevated surface behind every form/quiz. White on the warm page ground
+ * with a real border and shadow — the old #faf9f7-on-#ffffff card was a 1%
+ * contrast difference, so it read as nothing at all.
  */
-export const FunnelCard = ({ children }: PropsWithChildren) => (
-  <div className="w-full bg-[#faf9f7] border border-[#7B5EA7]/15 rounded-[2rem] shadow-[0_10px_40px_-20px_rgba(15,15,15,0.18)] p-6 sm:p-8">
+export const FunnelCard = ({
+  children,
+  className,
+}: PropsWithChildren<{ className?: string }>) => (
+  <div
+    className={cn(
+      "w-full bg-white border border-[#ece5d9] rounded-[1.75rem] shadow-[0_20px_50px_-30px_rgba(26,26,24,0.35)] p-6 sm:p-8",
+      className,
+    )}
+  >
     {children}
   </div>
 );

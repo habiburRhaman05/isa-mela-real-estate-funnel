@@ -1,52 +1,48 @@
 import { ArrowLeft } from "lucide-react";
+import { Link } from "react-router-dom";
 import LanguageSwitcher from "@/components/LanguageSwitcher";
+import Container from "@/components/Container";
 import { LOGO_URL } from "@/lib/constants";
 import type { Lang } from "@/lib/i18n";
 
 type PageHeaderProps = {
   lang: Lang;
-  backHref?: string;
+  backTo?: string;
   backLabel?: string;
-  compact?: boolean;
 };
 
 /**
- * Shared top bar for every funnel page: logo left, language switcher right
- * (an optional back link sits above both). Keeping this in one place means
- * language switching works the same way on every step of the funnel, not
- * just the homepage.
+ * Sticky top bar: back link + logo on the left, language switcher on the
+ * right, all on ONE baseline inside the shared Container so the header's
+ * left edge lines up with the page content beneath it.
  */
-export const PageHeader = ({
-  lang,
-  backHref,
-  backLabel,
-  compact,
-}: PageHeaderProps) => (
-  <div className="w-full px-4 sm:px-8 pt-6">
-    {backHref && backLabel && (
-      <div className="max-w-6xl mx-auto mb-3">
-        <a
-          href={backHref}
-          className="inline-flex items-center gap-2 text-xs text-[#7B5EA7] hover:underline font-semibold"
+export const PageHeader = ({ lang, backTo, backLabel }: PageHeaderProps) => (
+  <header className="sticky top-0 z-30 bg-[#faf8f5]/85 backdrop-blur-md border-b border-[#ece5d9]">
+    <Container className="flex items-center justify-between gap-4 h-[72px] sm:h-20">
+      <div className="flex items-center gap-3 sm:gap-5 min-w-0">
+        {backTo && backLabel && (
+          <Link
+            to={backTo}
+            className="hidden sm:inline-flex items-center gap-1.5 text-xs font-medium text-[#6b6660] hover:text-[#1a1a18] transition-colors flex-shrink-0"
+          >
+            <ArrowLeft className="w-4 h-4" />
+            {backLabel}
+          </Link>
+        )}
+        <Link
+          to={`/?lang=${lang}`}
+          className="flex-shrink-0 transition-opacity hover:opacity-70"
         >
-          <ArrowLeft className="w-4 h-4" /> {backLabel}
-        </a>
+          <img
+            src={LOGO_URL}
+            alt="Isa Melo Dubai Real Estate"
+            className="h-11 sm:h-14 w-auto object-contain"
+          />
+        </Link>
       </div>
-    )}
-    <div className="max-w-6xl mx-auto flex items-center justify-between gap-4">
-      <a
-        href={`/?lang=${lang}`}
-        className="hover:scale-105 transition-transform duration-300"
-      >
-        <img
-          src={LOGO_URL}
-          alt="Isa Melo Dubai Real Estate"
-          className={`${compact ? "h-16 sm:h-20" : "h-20 sm:h-24"} object-contain`}
-        />
-      </a>
       <LanguageSwitcher />
-    </div>
-  </div>
+    </Container>
+  </header>
 );
 
 export default PageHeader;
