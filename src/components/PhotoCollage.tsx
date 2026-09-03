@@ -14,7 +14,7 @@ type PhotoCollageProps = {
  * be layered *behind* an opaque portrait, so it never actually rendered.
  */
 export const PhotoCollage = ({ className, size = "default" }: PhotoCollageProps) => (
-  <div className={cn("relative w-full max-w-[400px] mx-auto lg:mx-0", className)}>
+  <div className={cn("relative w-full max-w-[440px] mx-auto lg:mx-0", className)}>
     {/* Gold offset frame */}
  
 
@@ -27,7 +27,7 @@ export const PhotoCollage = ({ className, size = "default" }: PhotoCollageProps)
         alt="Isa Melo, Dubai real estate consultant"
         className={cn(
           "w-full object-cover object-top",
-          size === "tall" ? "h-[440px] sm:h-[560px]" : "h-[380px] sm:h-[480px]",
+          size === "tall" ? "h-[480px] sm:h-[620px]" : "h-[380px] sm:h-[480px]",
         )}
       />
     </div>

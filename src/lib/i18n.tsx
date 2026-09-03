@@ -106,6 +106,14 @@ export type Dict = {
     eyebrow: string;
     headline: [string, string];
     whatsapp: string;
+    explore: string;
+    discoverMore: string;
+    quickProjects: string;
+    quickProperties: string;
+    quickAbout: string;
+    quickGuide: string;
+    quickInvest: string;
+    quickMap: string;
     footer: string;
   };
   newsletter: {
@@ -141,6 +149,11 @@ export type Dict = {
   };
   investment: {
     eyebrow: string;
+    heroHeadline: [string, string, string];
+    heroSubtitle: string;
+    featured: string;
+    viewDetails: string;
+    available: string;
     step1Title: string;
     step1Options: string[];
     step2Title: string;
@@ -188,6 +201,14 @@ export type Dict = {
     emailError: string;
     consentError: string;
     reassurance: string;
+    trust1Title: string;
+    trust1Sub: string;
+    trust2Title: string;
+    trust2Sub: string;
+    trust3Title: string;
+    trust3Sub: string;
+    trust4Title: string;
+    trust4Sub: string;
     footer: string;
   };
   guide: {

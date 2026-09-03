@@ -276,8 +276,8 @@ export const ConsultPage = () => {
                 <Star className="w-[16px] h-[16px] text-[#7B5EA7]" fill="currentColor" />
               </span>
               <div>
-                <span className="block text-[11px] font-semibold text-[#1a1a18]">Trusted by 500+</span>
-                <span className="block text-[10px] text-[#999]">Global investors</span>
+                <span className="block text-[11px] font-semibold text-[#1a1a18]">{t.consult.trust1Title}</span>
+                <span className="block text-[10px] text-[#999]">{t.consult.trust1Sub}</span>
               </div>
             </div>
 
@@ -286,8 +286,8 @@ export const ConsultPage = () => {
                 <Clock className="w-[16px] h-[16px] text-[#2A9D8F]" />
               </span>
               <div>
-                <span className="block text-[11px] font-semibold text-[#1a1a18]">24h Response</span>
-                <span className="block text-[10px] text-[#999]">Guaranteed reply</span>
+                <span className="block text-[11px] font-semibold text-[#1a1a18]">{t.consult.trust2Title}</span>
+                <span className="block text-[10px] text-[#999]">{t.consult.trust2Sub}</span>
               </div>
             </div>
 
@@ -296,8 +296,8 @@ export const ConsultPage = () => {
                 <Sparkles className="w-[16px] h-[16px] text-[#C9A961]" />
               </span>
               <div>
-                <span className="block text-[11px] font-semibold text-[#1a1a18]">100% Effective</span>
-                <span className="block text-[10px] text-[#999]">Consultation</span>
+                <span className="block text-[11px] font-semibold text-[#1a1a18]">{t.consult.trust3Title}</span>
+                <span className="block text-[10px] text-[#999]">{t.consult.trust3Sub}</span>
               </div>
             </div>
 
@@ -306,8 +306,8 @@ export const ConsultPage = () => {
                 <Globe className="w-[16px] h-[16px] text-[#E07A5F]" />
               </span>
               <div>
-                <span className="block text-[11px] font-semibold text-[#1a1a18]">15+ Markets</span>
-                <span className="block text-[10px] text-[#999]">Worldwide coverage</span>
+                <span className="block text-[11px] font-semibold text-[#1a1a18]">{t.consult.trust4Title}</span>
+                <span className="block text-[10px] text-[#999]">{t.consult.trust4Sub}</span>
               </div>
             </div>
           </div>

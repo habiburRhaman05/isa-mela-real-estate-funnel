@@ -19,7 +19,7 @@ import {
   Phone,
   ExternalLink,
 } from "lucide-react";
-import { getDict, useLang } from "@/lib/i18n";
+import { getDict, useLang, type Dict } from "@/lib/i18n";
 import PhoneInputField, {
   type CountryData,
 } from "@/components/PhoneInputField";
@@ -216,7 +216,8 @@ const PropertyCard = ({
   featured,
   image,
   href,
-}: (typeof PROPERTIES)[number]) => (
+  t,
+}: (typeof PROPERTIES)[number] & { t: Dict }) => (
   <a
     href={href}
     target="_blank"
@@ -240,19 +241,19 @@ const PropertyCard = ({
             status === "Available" ? "bg-[#22c55e]" : "bg-[#999]"
           }`}
         />
-        {status}
+        {status === "Available" ? t.investment.available : status}
       </span>
 
       {featured && (
         <span className="absolute right-3 top-3 rounded-full bg-[#C9A961]/90 px-2.5 py-1 text-[9px] font-medium uppercase tracking-wider text-white">
-          Featured
+          {t.investment.featured}
         </span>
       )}
 
       {/* Hover CTA */}
       <span className="absolute bottom-3 left-3 right-3 translate-y-3 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-400">
         <span className="inline-flex items-center gap-1.5 bg-white/95 backdrop-blur-sm text-[#1a1a18] text-[11px] font-semibold px-3 py-1.5 rounded-full">
-          View details
+          {t.investment.viewDetails}
           <ArrowRight className="w-3 h-3" />
         </span>
       </span>
@@ -407,13 +408,13 @@ export const InvestmentPage = () => {
               </div>
 
               <h1 className="font-display text-[1.75rem] sm:text-[2.25rem] lg:text-[2.75rem] font-normal leading-[1.1] tracking-[-0.02em] text-[#1a1a18]">
-                Invest in Dubai's{" "}
-                <em className="not-italic text-[#7B5EA7]">booming real estate</em>{" "}
-                market
+                {t.investment.heroHeadline[0]}{" "}
+                <em className="not-italic text-[#7B5EA7]">{t.investment.heroHeadline[1]}</em>{" "}
+                {t.investment.heroHeadline[2]}
               </h1>
 
               <p className="text-sm sm:text-[15px] text-[#6b6660] leading-relaxed mt-4 max-w-lg mx-auto">
-                Premium investment opportunities curated by experts with deep local market knowledge.
+                {t.investment.heroSubtitle}
               </p>
 
               {/* Decorative accent dots */}
@@ -748,7 +749,7 @@ export const InvestmentPage = () => {
 
             <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5">
               {PROPERTIES.map((p) => (
-                <PropertyCard key={p.name} {...p} />
+                <PropertyCard key={p.name} {...p} t={t} />
               ))}
             </div>
           </Container>

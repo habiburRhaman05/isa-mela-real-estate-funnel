@@ -149,134 +149,101 @@ export const NewsletterPage = () => {
             </p>
           </div>
 
-          {/* ── Middle: Asymmetric 2-column ────────────── */}
-          <div className="grid grid-cols-1 lg:grid-cols-[1fr_380px] gap-6 lg:gap-8 items-start">
-            {/* Left column: Stacked benefit cards with staggered offset */}
-            <div className="flex flex-col gap-4 sm:gap-5">
-              {benefits.map((b, i) => {
-                const Icon = ICON_MAP[b.icon] || Zap;
-                const offsets = ["lg:translate-y-0", "lg:translate-y-6", "lg:translate-y-3"];
-                return (
-                  <div
-                    key={i}
-                    className={`bg-white border border-[#ece5d9] rounded-2xl px-6 py-6 transition-all duration-300 hover:shadow-[0_12px_32px_-12px_rgba(26,26,24,0.1)] hover:border-[#C9A961]/30 ${offsets[i] || ""}`}
+          {/* ── Middle: Bento grid ────────────────────────── */}
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 sm:gap-5">
+            {/* Form card — large, left 5 cols */}
+            <div className="lg:col-span-5 bg-white border border-[#ece5d9] rounded-[1.75rem] shadow-[0_20px_50px_-30px_rgba(26,26,24,0.35)] p-6 sm:p-8 flex flex-col">
+              <h2 className="font-display text-xl font-normal text-[#1a1a18] text-center mb-1">
+                {t.newsletter.formTitle}
+              </h2>
+              <div className="w-10 h-[2px] bg-[#7B5EA7] rounded-full mx-auto mt-2 mb-6" />
+
+              {isSubmitted ? (
+                <FormSuccess
+                  title={t.newsletter.success}
+                  subtitle={t.newsletter.successSub}
+                />
+              ) : (
+                <Form {...form}>
+                  <form
+                    onSubmit={form.handleSubmit(onSubmit)}
+                    className="w-full space-y-4 flex-1 flex flex-col"
+                    noValidate
                   >
-                    <div className="flex items-start gap-4">
-                      <span className="w-12 h-12 rounded-2xl bg-gradient-to-br from-[#7B5EA7]/10 to-[#C9A961]/10 flex items-center justify-center flex-shrink-0">
-                        <Icon className="w-5 h-5 text-[#7B5EA7]" />
-                      </span>
-                      <div>
-                        <h3 className="text-base font-semibold text-[#1a1a18]">
-                          {b.title}
-                        </h3>
-                        <p className="text-[13px] text-[#8a847c] leading-relaxed mt-1.5">
-                          {b.desc}
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                );
-              })}
+                    <FormField
+                      control={form.control}
+                      name="name"
+                      render={({ field, fieldState }) => (
+                        <FormItem className="space-y-1.5">
+                          <FormLabel className={labelClass}>
+                            {t.newsletter.nameLabel}
+                          </FormLabel>
+                          <div className={pillClass(!!fieldState.error)}>
+                            <User className="w-4 h-4 text-[#b5aea4] flex-shrink-0" />
+                            <FormControl>
+                              <input
+                                {...field}
+                                type="text"
+                                placeholder={t.newsletter.namePh}
+                                className="w-full bg-transparent text-[#1a1a18] placeholder-[#b5aea4] focus:outline-none text-sm"
+                              />
+                            </FormControl>
+                          </div>
+                          <FormMessage className="text-xs font-normal" />
+                        </FormItem>
+                      )}
+                    />
 
+                    <FormField
+                      control={form.control}
+                      name="email"
+                      render={({ field, fieldState }) => (
+                        <FormItem className="space-y-1.5">
+                          <FormLabel className={labelClass}>
+                            {t.newsletter.emailLabel}
+                          </FormLabel>
+                          <div className={pillClass(!!fieldState.error)}>
+                            <Mail className="w-4 h-4 text-[#b5aea4] flex-shrink-0" />
+                            <FormControl>
+                              <input
+                                {...field}
+                                type="email"
+                                placeholder={t.newsletter.emailPh}
+                                className="w-full bg-transparent text-[#1a1a18] placeholder-[#b5aea4] focus:outline-none text-sm"
+                              />
+                            </FormControl>
+                          </div>
+                          <FormMessage className="text-xs font-normal" />
+                        </FormItem>
+                      )}
+                    />
 
-            </div>
+                    <FormField
+                      control={form.control}
+                      name="consent"
+                      render={({ field }) => (
+                        <FormItem className="space-y-1.5 pt-0.5">
+                          <div className="flex items-start gap-3">
+                            <FormControl>
+                              <input
+                                type="checkbox"
+                                checked={field.value}
+                                onChange={(e) =>
+                                  field.onChange(e.target.checked)
+                                }
+                                className="mt-0.5 h-4 w-4 rounded border-[#d5cec2] accent-[#7B5EA7] flex-shrink-0"
+                              />
+                            </FormControl>
+                            <label className="text-[11px] text-[#8a847c] leading-relaxed">
+                              {t.newsletter.consent}
+                            </label>
+                          </div>
+                          <FormMessage className="text-xs font-normal" />
+                        </FormItem>
+                      )}
+                    />
 
-            {/* Right column: Sticky form */}
-            <div className="lg:sticky lg:top-24">
-              <div className="bg-white border border-[#ece5d9] rounded-[1.75rem] shadow-[0_20px_50px_-30px_rgba(26,26,24,0.35)] p-6 sm:p-8">
-                <h2 className="font-display text-xl font-normal text-[#1a1a18] text-center mb-1">
-                  {t.newsletter.formTitle}
-                </h2>
-                <div className="w-10 h-[2px] bg-[#7B5EA7] rounded-full mx-auto mt-2 mb-6" />
-
-                {isSubmitted ? (
-                  <FormSuccess
-                    title={t.newsletter.success}
-                    subtitle={t.newsletter.successSub}
-                  />
-                ) : (
-                  <Form {...form}>
-                    <form
-                      onSubmit={form.handleSubmit(onSubmit)}
-                      className="w-full space-y-4"
-                      noValidate
-                    >
-                      {/* Name */}
-                      <FormField
-                        control={form.control}
-                        name="name"
-                        render={({ field, fieldState }) => (
-                          <FormItem className="space-y-1.5">
-                            <FormLabel className={labelClass}>
-                              {t.newsletter.nameLabel}
-                            </FormLabel>
-                            <div className={pillClass(!!fieldState.error)}>
-                              <User className="w-4 h-4 text-[#b5aea4] flex-shrink-0" />
-                              <FormControl>
-                                <input
-                                  {...field}
-                                  type="text"
-                                  placeholder={t.newsletter.namePh}
-                                  className="w-full bg-transparent text-[#1a1a18] placeholder-[#b5aea4] focus:outline-none text-sm"
-                                />
-                              </FormControl>
-                            </div>
-                            <FormMessage className="text-xs font-normal" />
-                          </FormItem>
-                        )}
-                      />
-
-                      {/* Email */}
-                      <FormField
-                        control={form.control}
-                        name="email"
-                        render={({ field, fieldState }) => (
-                          <FormItem className="space-y-1.5">
-                            <FormLabel className={labelClass}>
-                              {t.newsletter.emailLabel}
-                            </FormLabel>
-                            <div className={pillClass(!!fieldState.error)}>
-                              <Mail className="w-4 h-4 text-[#b5aea4] flex-shrink-0" />
-                              <FormControl>
-                                <input
-                                  {...field}
-                                  type="email"
-                                  placeholder={t.newsletter.emailPh}
-                                  className="w-full bg-transparent text-[#1a1a18] placeholder-[#b5aea4] focus:outline-none text-sm"
-                                />
-                              </FormControl>
-                            </div>
-                            <FormMessage className="text-xs font-normal" />
-                          </FormItem>
-                        )}
-                      />
-
-                      {/* Consent */}
-                      <FormField
-                        control={form.control}
-                        name="consent"
-                        render={({ field }) => (
-                          <FormItem className="space-y-1.5 pt-0.5">
-                            <div className="flex items-start gap-3">
-                              <FormControl>
-                                <input
-                                  type="checkbox"
-                                  checked={field.value}
-                                  onChange={(e) =>
-                                    field.onChange(e.target.checked)
-                                  }
-                                  className="mt-0.5 h-4 w-4 rounded border-[#d5cec2] accent-[#7B5EA7] flex-shrink-0"
-                                />
-                              </FormControl>
-                              <label className="text-[11px] text-[#8a847c] leading-relaxed">
-                                {t.newsletter.consent}
-                              </label>
-                            </div>
-                            <FormMessage className="text-xs font-normal" />
-                          </FormItem>
-                        )}
-                      />
-
+                    <div className="mt-auto pt-2">
                       <button
                         type="submit"
                         disabled={isSubmitting}
@@ -294,11 +261,81 @@ export const NewsletterPage = () => {
                           </>
                         )}
                       </button>
-                    </form>
-                  </Form>
-                )}
-              </div>
+                    </div>
+                  </form>
+                </Form>
+              )}
             </div>
+
+            {/* Benefit 1 — tall card, right 7 cols */}
+            {(() => {
+              const b = benefits[0];
+              const Icon = ICON_MAP[b.icon] || Zap;
+              return (
+                <div className="lg:col-span-7 bg-gradient-to-br from-[#7B5EA7] to-[#5B3D8F] rounded-[1.75rem] p-7 sm:p-8 flex flex-col justify-between text-white relative overflow-hidden">
+                  {/* Decorative circle */}
+                  <div className="absolute -top-16 -right-16 w-48 h-48 bg-white/10 rounded-full" />
+                  <div className="absolute bottom-8 left-6 w-24 h-24 bg-white/5 rounded-full" />
+                  <div className="relative z-10">
+                    <span className="inline-flex items-center gap-2 bg-white/15 backdrop-blur-sm rounded-full px-3 py-1 text-[11px] font-semibold tracking-wide mb-4">
+                      <span className="w-1.5 h-1.5 rounded-full bg-white animate-pulse" />
+                      {t.newsletter.eyebrow}
+                    </span>
+                    <h3 className="text-xl sm:text-2xl font-display font-normal leading-snug">
+                      {b.title}
+                    </h3>
+                    <p className="text-sm text-white/70 leading-relaxed mt-3 max-w-sm">
+                      {b.desc}
+                    </p>
+                  </div>
+                  <div className="relative z-10 mt-6">
+                    <span className="w-14 h-14 rounded-2xl bg-white/15 flex items-center justify-center">
+                      <Icon className="w-7 h-7 text-white" />
+                    </span>
+                  </div>
+                </div>
+              );
+            })()}
+
+            {/* Benefit 2 — left 6 cols */}
+            {(() => {
+              const b = benefits[1];
+              const Icon = ICON_MAP[b.icon] || Zap;
+              return (
+                <div className="lg:col-span-6 bg-white border border-[#ece5d9] rounded-[1.75rem] px-6 py-6 flex flex-col transition-all duration-300 hover:shadow-[0_12px_32px_-12px_rgba(26,26,24,0.1)] hover:border-[#7B5EA7]/20 relative overflow-hidden">
+                  <div className="absolute -bottom-8 -right-8 w-32 h-32 bg-[#2A9D8F]/5 rounded-full" />
+                  <span className="w-12 h-12 rounded-2xl bg-[#2A9D8F]/10 flex items-center justify-center mb-4">
+                    <Icon className="w-6 h-6 text-[#2A9D8F]" />
+                  </span>
+                  <h3 className="text-base font-semibold text-[#1a1a18]">
+                    {b.title}
+                  </h3>
+                  <p className="text-[13px] text-[#8a847c] leading-relaxed mt-2">
+                    {b.desc}
+                  </p>
+                </div>
+              );
+            })()}
+
+            {/* Benefit 3 — right 6 cols */}
+            {(() => {
+              const b = benefits[2];
+              const Icon = ICON_MAP[b.icon] || Zap;
+              return (
+                <div className="lg:col-span-6 bg-white border border-[#ece5d9] rounded-[1.75rem] px-6 py-6 flex flex-col transition-all duration-300 hover:shadow-[0_12px_32px_-12px_rgba(26,26,24,0.1)] hover:border-[#C9A961]/20 relative overflow-hidden">
+                  <div className="absolute -bottom-8 -right-8 w-32 h-32 bg-[#C9A961]/5 rounded-full" />
+                  <span className="w-12 h-12 rounded-2xl bg-[#C9A961]/10 flex items-center justify-center mb-4">
+                    <Icon className="w-6 h-6 text-[#C9A961]" />
+                  </span>
+                  <h3 className="text-base font-semibold text-[#1a1a18]">
+                    {b.title}
+                  </h3>
+                  <p className="text-[13px] text-[#8a847c] leading-relaxed mt-2">
+                    {b.desc}
+                  </p>
+                </div>
+              );
+            })()}
           </div>
 
           {/* ── Bottom: Horizontal CTA grid ────────────── */}

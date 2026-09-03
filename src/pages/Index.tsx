@@ -24,61 +24,13 @@ import { INSTAGRAM_URL, WHATSAPP_URL } from "@/lib/constants";
 
 const BASE = "http://isamelo-realestate.vercel.app";
 
-const quickLinks = [
-  {
-    to: `${BASE}/projects`,
-    label: "All Projects",
-    icon: Building2,
-    color: "from-[#4F8FE8] to-[#2563EB]",
-    iconColor: "text-white",
-    bg: "bg-[#4F8FE8]/10",
-    external: true,
-  },
-  {
-    to: `${BASE}/properties`,
-    label: "Properties",
-    icon: Home,
-    color: "from-[#7B5EA7] to-[#5B3D8F]",
-    iconColor: "text-white",
-    bg: "bg-[#7B5EA7]/10",
-    external: true,
-  },
-  {
-    to: `${BASE}/about-us`,
-    label: "About Us",
-    icon: Users,
-    color: "from-[#C9A961] to-[#A68B3E]",
-    iconColor: "text-white",
-    bg: "bg-[#C9A961]/10",
-    external: true,
-  },
-  {
-    to: `${BASE}/guide`,
-    label: "Buyer's Guide",
-    icon: Compass,
-    color: "from-[#2A9D8F] to-[#1E7A6F]",
-    iconColor: "text-white",
-    bg: "bg-[#2A9D8F]/10",
-    external: true,
-  },
-  {
-    to: `${BASE}/invest`,
-    label: "Investment",
-    icon: Briefcase,
-    color: "from-[#E07A5F] to-[#C45D3E]",
-    iconColor: "text-white",
-    bg: "bg-[#E07A5F]/10",
-    external: true,
-  },
-  {
-    to: `${BASE}/map`,
-    label: "Explore Map",
-    icon: Map,
-    color: "from-[#6C8EBF] to-[#4A6D99]",
-    iconColor: "text-white",
-    bg: "bg-[#6C8EBF]/10",
-    external: true,
-  },
+const QUICK_LINK_CONFIGS = [
+  { to: `${BASE}/projects`, icon: Building2, color: "from-[#4F8FE8] to-[#2563EB]", iconColor: "text-white" },
+  { to: `${BASE}/properties`, icon: Home, color: "from-[#7B5EA7] to-[#5B3D8F]", iconColor: "text-white" },
+  { to: `${BASE}/about-us`, icon: Users, color: "from-[#C9A961] to-[#A68B3E]", iconColor: "text-white" },
+  { to: `${BASE}/guide`, icon: Compass, color: "from-[#2A9D8F] to-[#1E7A6F]", iconColor: "text-white" },
+  { to: `${BASE}/invest`, icon: Briefcase, color: "from-[#E07A5F] to-[#C45D3E]", iconColor: "text-white" },
+  { to: `${BASE}/map`, icon: Map, color: "from-[#6C8EBF] to-[#4A6D99]", iconColor: "text-white" },
 ];
 
 export const Index = () => {
@@ -156,17 +108,20 @@ export const Index = () => {
         </Container>
 
         {/* ── Quick-access cards ─────────────────────────────── */}
-        <section className="pt-4 sm:pt-6 lg:pt-8 pb-10 sm:pb-14 lg:pb-16 border-t border-[#ece5d9]">
+        <section className="pt-4 sm:pt-6 lg:pt-8 pb-10 sm:pb-14 lg:pb-16">
           <Container>
             <div className="text-center mb-8 sm:mb-10">
-              <p className="eyebrow mb-3">Explore</p>
+              <p className="eyebrow mb-3">{t.home.explore}</p>
               <h2 className="font-display text-2xl sm:text-3xl font-normal tracking-[-0.02em] text-[#1a1a18]">
-                Discover More
+                {t.home.discoverMore}
               </h2>
             </div>
 
             <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3 sm:gap-4">
-              {quickLinks.map(({ to, label, icon: Icon, color, iconColor }) => (
+              {QUICK_LINK_CONFIGS.map(({ to, icon: Icon, color, iconColor }, i) => {
+                const labels = [t.home.quickProjects, t.home.quickProperties, t.home.quickAbout, t.home.quickGuide, t.home.quickInvest, t.home.quickMap];
+                const label = labels[i];
+                return (
                 <a
                   key={to}
                   href={to}
@@ -190,7 +145,8 @@ export const Index = () => {
                     className={`absolute bottom-0 left-1/2 -translate-x-1/2 w-0 h-[2px] rounded-full bg-gradient-to-r ${color} group-hover:w-8 transition-all duration-300`}
                   />
                 </a>
-              ))}
+              );
+              })}
             </div>
           </Container>
         </section>
