@@ -111,8 +111,14 @@ export type Dict = {
   newsletter: {
     eyebrow: string;
     headline: [string, string];
+    subtitle: string;
+    benefits: { icon: string; title: string; desc: string }[];
+    formTitle: string;
+    formSubtitle: string;
+    nameLabel: string;
     namePh: string;
     phonePh: string;
+    emailLabel: string;
     emailPh: string;
     consent: string;
     submit: string;
@@ -124,6 +130,13 @@ export type Dict = {
     phoneError: string;
     emailError: string;
     consentError: string;
+    ctaOr: string;
+    ctaCall: string;
+    ctaCallSub: string;
+    ctaExplore: string;
+    ctaExploreSub: string;
+    ctaWhatsapp: string;
+    ctaWhatsappSub: string;
     footer: string;
   };
   investment: {
