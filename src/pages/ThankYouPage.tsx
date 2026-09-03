@@ -1,40 +1,37 @@
 import React from "react";
-import { CheckCircle2 } from "lucide-react";
+import { Link } from "react-router-dom";
+import { Check, ArrowLeft } from "lucide-react";
 import { getDict, useLang } from "@/lib/i18n";
-import PageHeader from "@/components/PageHeader";
-import PageFooter from "@/components/PageFooter";
-import PhotoCollage from "@/components/PhotoCollage";
+import FunnelLayout from "@/components/FunnelLayout";
 
 export const ThankYouPage = () => {
   const lang = useLang();
   const t = getDict(lang);
 
   return (
-    <div className="min-h-screen bg-[#ffffff] text-[#0f0f0f] flex flex-col">
-      <PageHeader lang={lang} />
-
-      {/* Split content */}
-      <div className="flex-1 w-full max-w-6xl mx-auto grid lg:grid-cols-2 gap-8 lg:gap-12 items-center px-4 sm:px-8 pb-8">
-        <PhotoCollage />
-
-        {/* Right: thank you message */}
-        <div className="text-center lg:text-left max-w-md mx-auto lg:mx-0 space-y-4 px-2">
-          <span className="inline-flex w-14 h-14 rounded-full bg-[#7B5EA7]/10 items-center justify-center mb-2">
-            <CheckCircle2 className="w-8 h-8 text-[#7B5EA7]" />
-          </span>
-          <h1 className="text-xl sm:text-3xl lg:text-4xl font-extrabold leading-snug tracking-tight text-[#0f0f0f]">
-            {t.thankYou.line1}
-          </h1>
-          <p className="text-xl sm:text-3xl lg:text-4xl font-extrabold leading-snug tracking-tight text-[#7B5EA7] pt-2">
-            {t.thankYou.line2}
-          </p>
+    <FunnelLayout lang={lang} footerText={t.thankYou.footer}>
+      <div className="text-center lg:text-left">
+        <span className="inline-flex w-12 h-12 rounded-full bg-[#7B5EA7] items-center justify-center mb-6">
+          <Check className="w-6 h-6 text-white" strokeWidth={2.5} />
+        </span>
+        <div>
+          <span className="eyebrow">{t.thankYou.eyebrow}</span>
         </div>
+        <h1 className="font-display text-[1.75rem] sm:text-[2.5rem] font-normal leading-[1.12] tracking-[-0.02em] text-[#1a1a18] mt-3">
+          {t.thankYou.line1}
+        </h1>
+        <p className="font-display text-[1.75rem] sm:text-[2.5rem] font-normal leading-[1.12] tracking-[-0.02em] text-[#7B5EA7] mt-2">
+          {t.thankYou.line2}
+        </p>
+        <Link
+          to={`/?lang=${lang}`}
+          className="inline-flex items-center gap-2 text-sm font-medium text-[#6b6660] hover:text-[#1a1a18] transition-colors mt-9"
+        >
+          <ArrowLeft className="w-4 h-4" />
+          {t.thankYou.back}
+        </Link>
       </div>
-
-      <div className="w-full max-w-6xl mx-auto px-4 sm:px-8">
-        <PageFooter text={t.thankYou.footer} />
-      </div>
-    </div>
+    </FunnelLayout>
   );
 };
 
