@@ -19,12 +19,12 @@ import { INSTAGRAM_URL, WHATSAPP_URL } from "@/lib/constants";
 const BASE = "http://isamelo-realestate.vercel.app";
 
 const QUICK_LINK_CONFIGS = [
-  { to: `${BASE}/projects`, icon: "/01_city_skyline.png" },
-  { to: `${BASE}/properties`, icon: "/03_property_home.png" },
-  { to: `${BASE}/about`, icon: "/02_chat_question.png" },
-  { to: `/property-buyers-guide`, icon: "/04_coastal_landmark.png" },
-  { to: `/investment`, icon: "/05_news_article.png" },
-  { to: `${BASE}/contact`, icon: "/06_hospitality_network.png" },
+  { to: `${BASE}/projects`, icon: "/icon_02_question_chat.png" },
+  { to: `${BASE}/properties`, icon: "/icon_03_home_map.png" },
+  { to: `${BASE}/about`, icon: "/icon_01_cityscape.png" },
+  { to: `/property-buyers-guide`, icon: "/icon_04_sun_landscape.png" },
+  { to: `/investment`, icon: "/icon_05_news_document.png" },
+  { to: `${BASE}/contact`, icon: "/icon_06_travel_services.png" },
 ];
 
 export const Index = () => {
@@ -123,7 +123,7 @@ export const Index = () => {
                   rel="noopener noreferrer"
                   className="group relative flex flex-col items-center gap-2 p-3 sm:p-4 rounded-2xl bg-white border border-[#ece5d9] hover:border-[#c9a961] transition-all duration-300 hover:shadow-[0_16px_40px_-12px_rgba(26,26,24,0.18)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#7B5EA7]/30"
                 >
-                  <img src={icon} alt={label} className="w-12 h-12 object-contain group-hover:scale-110 transition-transform duration-300" />
+                  <img src={icon} alt={label} className="w-16 h-16 object-contain group-hover:scale-110 transition-transform duration-300" />
 
                   <span className="text-[12px] sm:text-[13px] font-semibold text-[#1a1a18] leading-tight text-center">
                     {label}

@@ -61,11 +61,6 @@ const TIME_SLOTS = [
 ];
 
 /* ── Calendar helpers ─────────────────────────────────── */
-const DAYS = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
-const MONTHS = [
-  "January", "February", "March", "April", "May", "June",
-  "July", "August", "September", "October", "November", "December",
-];
 
 function getDaysInMonth(year: number, month: number) {
   return new Date(year, month + 1, 0).getDate();
@@ -407,7 +402,7 @@ export const ConsultPage = () => {
                         <div className="flex items-center gap-2 mb-3">
                           <CalendarCheck className="w-4 h-4 text-[#7B5EA7]" />
                           <h2 className="font-display text-lg font-normal text-[#1a1a18]">
-                            Pick a Date
+                            {t.consult.pickDate}
                           </h2>
                         </div>
 
@@ -428,7 +423,7 @@ export const ConsultPage = () => {
                               onClick={() => setShowYearMonthPicker((v) => !v)}
                               className="flex items-center gap-1.5 text-sm font-semibold text-[#1a1a18] hover:text-[#7B5EA7] transition-colors px-2 py-1 rounded-lg hover:bg-[#f5f1ea]"
                             >
-                              {MONTHS[calMonth]} {calYear}
+                              {t.consult.months[calMonth]} {calYear}
                               <ChevronDown className={`w-3.5 h-3.5 transition-transform duration-200 ${showYearMonthPicker ? "rotate-180" : ""}`} />
                             </button>
 
@@ -480,7 +475,7 @@ export const ConsultPage = () => {
 
                                 {/* Month grid */}
                                 <div className="grid grid-cols-3 gap-1">
-                                  {MONTHS.map((m, i) => {
+                                  {t.consult.months.map((m, i) => {
                                     const isCurrentMonth = i === calMonth;
                                     return (
                                       <button
@@ -508,7 +503,7 @@ export const ConsultPage = () => {
                                   }}
                                   className="w-full mt-2.5 text-[10px] font-bold text-[#7B5EA7] hover:bg-[#7B5EA7]/10 py-1.5 rounded-lg transition-colors tracking-wide uppercase"
                                 >
-                                  Jump to Today
+                                  {t.consult.jumpToToday}
                                 </button>
                               </div>
                             )}
@@ -525,7 +520,7 @@ export const ConsultPage = () => {
 
                         {/* Day headers */}
                         <div className="grid grid-cols-7 gap-1 mb-1.5">
-                          {DAYS.map((d) => (
+                          {t.consult.days.map((d) => (
                             <div key={d} className="text-center text-[10px] font-bold text-[#b5aea4] uppercase tracking-wider py-1">
                               {d}
                             </div>
@@ -592,7 +587,7 @@ export const ConsultPage = () => {
                             onClick={() => setBookingStep(1)}
                             className="inline-flex items-center justify-center gap-2 bg-transparent hover:bg-[#1a1a18]/5 text-[#6b6660] hover:text-[#1a1a18] font-semibold py-2.5 px-5 rounded-xl border border-[#e6dfd3] transition-all text-[12px]"
                           >
-                            Back
+                            {t.consult.back}
                           </button>
                           <button
                             type="button"
@@ -600,7 +595,7 @@ export const ConsultPage = () => {
                             onClick={() => setBookingStep(3)}
                             className={`${primaryButtonClass} mt-0 disabled:opacity-40`}
                           >
-                            Continue
+                            {t.consult.next}
                             <ChevronRight className="w-4 h-4" />
                           </button>
                         </div>
@@ -613,14 +608,14 @@ export const ConsultPage = () => {
                         <div className="flex items-center gap-2 mb-3">
                           <Clock className="w-4 h-4 text-[#7B5EA7]" />
                           <h2 className="font-display text-lg font-normal text-[#1a1a18]">
-                            Pick a Time
+                            {t.consult.pickTime}
                           </h2>
                         </div>
 
                         {/* Timezone selector */}
                         <div className="mb-3">
                           <label className="text-[10px] uppercase tracking-[0.12em] text-[#8a847c] font-semibold mb-1 block">
-                            Timezone
+                            {t.consult.timezone}
                           </label>
                           <div className="relative">
                             <Globe className="absolute left-3 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-[#b5aea4] pointer-events-none" />
@@ -675,7 +670,7 @@ export const ConsultPage = () => {
                             onClick={() => setBookingStep(2)}
                             className="inline-flex items-center justify-center gap-2 bg-transparent hover:bg-[#1a1a18]/5 text-[#6b6660] hover:text-[#1a1a18] font-semibold py-2.5 px-5 rounded-xl border border-[#e6dfd3] transition-all text-[12px]"
                           >
-                            Back
+                            {t.consult.back}
                           </button>
                           <button
                             type="button"
@@ -683,7 +678,7 @@ export const ConsultPage = () => {
                             onClick={() => setBookingStep(4)}
                             className={`${primaryButtonClass} mt-0 disabled:opacity-40`}
                           >
-                            Continue
+                            {t.consult.next}
                             <ChevronRight className="w-4 h-4" />
                           </button>
                         </div>
@@ -696,7 +691,7 @@ export const ConsultPage = () => {
                         <div className="flex items-center gap-2 mb-3">
                           <MessageSquare className="w-4 h-4 text-[#7B5EA7]" />
                           <h2 className="font-display text-lg font-normal text-[#1a1a18]">
-                            Any Notes?
+                            {t.consult.anyNotes}
                           </h2>
                         </div>
 
@@ -705,7 +700,7 @@ export const ConsultPage = () => {
                           <div className="flex items-center gap-2 text-[12px]">
                             <CalendarCheck className="w-3.5 h-3.5 text-[#7B5EA7]" />
                             <span className="font-medium text-[#1a1a18]">
-                              {selectedDate?.toLocaleDateString("en-US", {
+                              {selectedDate?.toLocaleDateString(lang === "pt" ? "pt-BR" : lang === "es" ? "es-ES" : "en-US", {
                                 weekday: "short",
                                 month: "short",
                                 day: "numeric",
@@ -724,12 +719,12 @@ export const ConsultPage = () => {
                         {/* Notes textarea */}
                         <div className="mb-4">
                           <label className="text-[10px] uppercase tracking-[0.12em] text-[#8a847c] font-semibold mb-1.5 block">
-                            Notes (optional)
+                            {t.consult.notesLabel}
                           </label>
                           <textarea
                             value={notes}
                             onChange={(e) => setNotes(e.target.value)}
-                            placeholder="What would you like to discuss? Any specific properties or areas of interest?"
+                            placeholder={t.consult.notesPh}
                             rows={3}
                             className="w-full bg-[#faf8f5] border border-[#e6dfd3] rounded-xl px-3.5 py-2.5 text-[12px] text-[#1a1a18] placeholder-[#b5aea4] focus:outline-none focus:border-[#7B5EA7] focus:ring-2 focus:ring-[#7B5EA7]/10 transition-all resize-none"
                           />
@@ -742,7 +737,7 @@ export const ConsultPage = () => {
                             onClick={() => setBookingStep(3)}
                             className="inline-flex items-center justify-center gap-2 bg-transparent hover:bg-[#1a1a18]/5 text-[#6b6660] hover:text-[#1a1a18] font-semibold py-2.5 px-5 rounded-xl border border-[#e6dfd3] transition-all text-[12px]"
                           >
-                            Back
+                            {t.consult.back}
                           </button>
                           <button
                             type="button"
@@ -755,7 +750,7 @@ export const ConsultPage = () => {
                             ) : (
                               <CalendarCheck className="w-4 h-4" />
                             )}
-                            {isSubmitting ? "Booking..." : "Confirm Booking"}
+                            {isSubmitting ? t.consult.submitting : t.consult.confirmBooking}
                           </button>
                         </div>
                       </div>

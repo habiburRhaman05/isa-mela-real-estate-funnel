@@ -62,7 +62,7 @@ export const ThankYouPage = () => {
                 <span className="w-6 h-6 rounded-full bg-[#7B5EA7]/10 flex items-center justify-center flex-shrink-0">
                   <Star className="w-3 h-3 text-[#7B5EA7]" fill="currentColor" />
                 </span>
-                What happens next?
+                {t.thankYou.whatNext}
               </h3>
               <div className="grid sm:grid-cols-3 gap-3">
                 <div className="flex items-start gap-2.5 p-2.5 rounded-xl bg-[#faf8f5] border border-[#f0ebe3]">
@@ -70,9 +70,9 @@ export const ThankYouPage = () => {
                     <CalendarCheck className="w-3.5 h-3.5 text-[#7B5EA7]" />
                   </span>
                   <div>
-                    <span className="block text-[11px] font-bold text-[#1a1a18]">Booking Confirmed</span>
+                    <span className="block text-[11px] font-bold text-[#1a1a18]">{t.thankYou.bookingConfirmed}</span>
                     <span className="block text-[10px] text-[#8a847c] leading-snug mt-0.5">
-                      Your consultation has been scheduled
+                      {t.thankYou.bookingConfirmedSub}
                     </span>
                   </div>
                 </div>
@@ -81,9 +81,9 @@ export const ThankYouPage = () => {
                     <Clock className="w-3.5 h-3.5 text-[#2A9D8F]" />
                   </span>
                   <div>
-                    <span className="block text-[11px] font-bold text-[#1a1a18]">Quick Response</span>
+                    <span className="block text-[11px] font-bold text-[#1a1a18]">{t.thankYou.quickResponse}</span>
                     <span className="block text-[10px] text-[#8a847c] leading-snug mt-0.5">
-                      We'll reach out within 24 hours
+                      {t.thankYou.quickResponseSub}
                     </span>
                   </div>
                 </div>
@@ -92,9 +92,9 @@ export const ThankYouPage = () => {
                     <Globe className="w-3.5 h-3.5 text-[#C9A961]" />
                   </span>
                   <div>
-                    <span className="block text-[11px] font-bold text-[#1a1a18]">Global Expertise</span>
+                    <span className="block text-[11px] font-bold text-[#1a1a18]">{t.thankYou.globalExpertise}</span>
                     <span className="block text-[10px] text-[#8a847c] leading-snug mt-0.5">
-                      Personalized Dubai market insights
+                      {t.thankYou.globalExpertiseSub}
                     </span>
                   </div>
                 </div>

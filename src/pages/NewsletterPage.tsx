@@ -272,21 +272,8 @@ export const NewsletterPage = () => {
               const b = benefits[0];
               const Icon = ICON_MAP[b.icon] || Zap;
               return (
-                <div className="lg:col-span-7 bg-gradient-to-br from-[#7B5EA7] to-[#5B3D8F] rounded-[1.75rem] px-4 py-3 flex flex-row items-center gap-2.5 text-white relative overflow-hidden">
-                  {/* Decorative circle */}
-                  <div className="absolute -top-16 -right-16 w-48 h-48 bg-white/10 rounded-full" />
-                  <div className="absolute bottom-8 left-6 w-24 h-24 bg-white/5 rounded-full" />
-                  <span className="w-8 h-8 rounded-lg bg-white/15 flex items-center justify-center flex-shrink-0">
-                    <Icon className="w-3.5 h-3.5 text-white" />
-                  </span>
-                  <div className="relative z-10 min-w-0 flex flex-wrap items-baseline gap-x-1">
-                    <span className="text-[13px] font-semibold leading-snug">
-                      {b.title}
-                    </span>
-                    <span className="text-[11px] text-white/70 leading-snug">
-                      {b.desc}
-                    </span>
-                  </div>
+                <div className="lg:col-span-7 border rounded-[1.75rem] px-4 py-3 flex flex-row items-center gap-2.5 text-white relative overflow-hidden">
+                
                 </div>
               );
             })()}            {/* Benefit 2 — left 6 cols */}
@@ -349,25 +336,16 @@ export const NewsletterPage = () => {
                 {/* Call Now */}
                 <a
                   href="tel:+12133402861"
-                  className="group relative bg-white border border-[#ece5d9] hover:border-[#2A9D8F] rounded-2xl px-4 py-3.5 transition-all duration-300 hover:shadow-[0_8px_24px_-10px_rgba(42,157,143,0.3)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#2A9D8F]/30 overflow-hidden"
+                  className="group flex items-center gap-3 bg-white border border-[#ece5d9] hover:border-[#2A9D8F] rounded-2xl px-3.5 py-3 transition-all duration-300 hover:shadow-[0_8px_24px_-10px_rgba(42,157,143,0.3)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#2A9D8F]/30"
                 >
-                  <span className="absolute top-0 right-0 w-16 h-16 bg-[#2A9D8F]/5 rounded-bl-[3rem]" />
-                  <div className="relative">
-                    <span className="w-8 h-8 rounded-lg bg-[#2A9D8F]/10 group-hover:bg-[#2A9D8F] flex items-center justify-center flex-shrink-0 transition-colors duration-300 mb-2">
-                      <Phone className="w-[18px] h-[18px] text-[#2A9D8F] group-hover:text-white transition-colors duration-300" />
-                    </span>
-                    <div className="flex items-center justify-between gap-2">
-                      <div>
-                        <h4 className="text-sm font-semibold text-[#1a1a18] leading-snug">
-                          {t.newsletter.ctaCall}
-                        </h4>
-                        <p className="text-[10px] text-[#999] leading-tight mt-0.5">
-                          {t.newsletter.ctaCallSub}
-                        </p>
-                      </div>
-                      <ArrowRight className="w-4 h-4 text-[#2A9D8F] group-hover:translate-x-1 transition-all duration-300 flex-shrink-0" />
-                    </div>
+                  <span className="w-9 h-9 rounded-xl bg-[#2A9D8F]/10 group-hover:bg-[#2A9D8F] flex items-center justify-center flex-shrink-0 transition-colors duration-300">
+                    <Phone className="w-4 h-4 text-[#2A9D8F] group-hover:text-white transition-colors duration-300" />
+                  </span>
+                  <div className="flex-1 min-w-0">
+                    <span className="block text-[12px] font-semibold text-[#1a1a18] leading-tight truncate">{t.newsletter.ctaCall}</span>
+                    <span className="block text-[10px] text-[#999] leading-tight truncate">{t.newsletter.ctaCallSub}</span>
                   </div>
+                  <ArrowRight className="w-4 h-4 text-[#2A9D8F] group-hover:translate-x-1 transition-all duration-300 flex-shrink-0" />
                 </a>
 
                 {/* Explore Site */}
@@ -375,25 +353,16 @@ export const NewsletterPage = () => {
                   href={BASE}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="group relative bg-white border border-[#ece5d9] hover:border-[#7B5EA7] rounded-2xl px-4 py-3.5 transition-all duration-300 hover:shadow-[0_8px_24px_-10px_rgba(123,94,167,0.3)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#7B5EA7]/30 overflow-hidden"
+                  className="group flex items-center gap-3 bg-white border border-[#ece5d9] hover:border-[#7B5EA7] rounded-2xl px-3.5 py-3 transition-all duration-300 hover:shadow-[0_8px_24px_-10px_rgba(123,94,167,0.3)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#7B5EA7]/30"
                 >
-                  <span className="absolute top-0 right-0 w-16 h-16 bg-[#7B5EA7]/5 rounded-bl-[3rem]" />
-                  <div className="relative">
-                    <span className="w-8 h-8 rounded-lg bg-[#7B5EA7]/10 group-hover:bg-[#7B5EA7] flex items-center justify-center flex-shrink-0 transition-colors duration-300 mb-2">
-                      <Globe className="w-[18px] h-[18px] text-[#7B5EA7] group-hover:text-white transition-colors duration-300" />
-                    </span>
-                    <div className="flex items-center justify-between gap-2">
-                      <div>
-                        <h4 className="text-sm font-semibold text-[#1a1a18] leading-snug">
-                          {t.newsletter.ctaExplore}
-                        </h4>
-                        <p className="text-[10px] text-[#999] leading-tight mt-0.5">
-                          {t.newsletter.ctaExploreSub}
-                        </p>
-                      </div>
-                      <ArrowRight className="w-4 h-4 text-[#7B5EA7] group-hover:translate-x-1 transition-all duration-300 flex-shrink-0" />
-                    </div>
+                  <span className="w-9 h-9 rounded-xl bg-[#7B5EA7]/10 group-hover:bg-[#7B5EA7] flex items-center justify-center flex-shrink-0 transition-colors duration-300">
+                    <Globe className="w-4 h-4 text-[#7B5EA7] group-hover:text-white transition-colors duration-300" />
+                  </span>
+                  <div className="flex-1 min-w-0">
+                    <span className="block text-[12px] font-semibold text-[#1a1a18] leading-tight truncate">{t.newsletter.ctaExplore}</span>
+                    <span className="block text-[10px] text-[#999] leading-tight truncate">{t.newsletter.ctaExploreSub}</span>
                   </div>
+                  <ArrowRight className="w-4 h-4 text-[#7B5EA7] group-hover:translate-x-1 transition-all duration-300 flex-shrink-0" />
                 </a>
 
                 {/* WhatsApp */}
@@ -401,30 +370,21 @@ export const NewsletterPage = () => {
                   href={WHATSAPP_URL}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="group relative bg-white border border-[#ece5d9] hover:border-[#25D366] rounded-2xl px-4 py-3.5 transition-all duration-300 hover:shadow-[0_8px_24px_-10px_rgba(37,211,102,0.3)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#25D366]/30 overflow-hidden"
+                  className="group flex items-center gap-3 bg-white border border-[#ece5d9] hover:border-[#25D366] rounded-2xl px-3.5 py-3 transition-all duration-300 hover:shadow-[0_8px_24px_-10px_rgba(37,211,102,0.3)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#25D366]/30"
                 >
-                  <span className="absolute top-0 right-0 w-16 h-16 bg-[#25D366]/5 rounded-bl-[3rem]" />
-                  <div className="relative">
-                    <span className="w-8 h-8 rounded-lg bg-[#25D366]/10 group-hover:bg-[#25D366] flex items-center justify-center flex-shrink-0 transition-colors duration-300 mb-2">
-                      <svg
-                        className="w-[18px] h-[18px] text-[#25D366] group-hover:text-white transition-colors duration-300 fill-current"
-                        viewBox="0 0 24 24"
-                      >
-                        <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
-                      </svg>
-                    </span>
-                    <div className="flex items-center justify-between gap-2">
-                      <div>
-                        <h4 className="text-sm font-semibold text-[#1a1a18] leading-snug">
-                          {t.newsletter.ctaWhatsapp}
-                        </h4>
-                        <p className="text-[10px] text-[#999] leading-tight mt-0.5">
-                          {t.newsletter.ctaWhatsappSub}
-                        </p>
-                      </div>
-                      <ArrowRight className="w-4 h-4 text-[#25D366] group-hover:translate-x-1 transition-all duration-300 flex-shrink-0" />
-                    </div>
+                  <span className="w-9 h-9 rounded-xl bg-[#25D366]/10 group-hover:bg-[#25D366] flex items-center justify-center flex-shrink-0 transition-colors duration-300">
+                    <svg
+                      className="w-4 h-4 text-[#25D366] group-hover:text-white transition-colors duration-300 fill-current"
+                      viewBox="0 0 24 24"
+                    >
+                      <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
+                    </svg>
+                  </span>
+                  <div className="flex-1 min-w-0">
+                    <span className="block text-[12px] font-semibold text-[#1a1a18] leading-tight truncate">{t.newsletter.ctaWhatsapp}</span>
+                    <span className="block text-[10px] text-[#999] leading-tight truncate">{t.newsletter.ctaWhatsappSub}</span>
                   </div>
+                  <ArrowRight className="w-4 h-4 text-[#25D366] group-hover:translate-x-1 transition-all duration-300 flex-shrink-0" />
                 </a>
               </div>
             </div>
