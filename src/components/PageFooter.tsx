@@ -20,7 +20,15 @@ export const PageFooter = ({ text }: PageFooterProps) => (
         © {new Date().getFullYear()} {text}
       </p>
       <div className="flex items-center gap-2.5">
- 
+        <a
+          href={INSTAGRAM_URL}
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Follow on Instagram"
+          className="w-9 h-9 rounded-full border border-[#e6dfd3] bg-white hover:border-[#c9a961] flex items-center justify-center transition-all hover:scale-105 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#7B5EA7]/30"
+        >
+          <InstagramIcon className="w-5 h-5" />
+        </a>
         <a
           href="https://www.facebook.com/"
           target="_blank"

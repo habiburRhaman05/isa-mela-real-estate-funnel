@@ -27,7 +27,7 @@ export const PhotoCollage = ({ className, size = "default" }: PhotoCollageProps)
         alt="Isa Melo, Dubai real estate consultant"
         className={cn(
           "w-full object-cover object-top",
-          size === "tall" ? "h-[480px] sm:h-[620px]" : "h-[380px] sm:h-[480px]",
+          size === "tall" ? "h-[400px] sm:h-[500px]" : "h-[280px] sm:h-[360px]",
         )}
       />
     </div>

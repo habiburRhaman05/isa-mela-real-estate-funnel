@@ -132,20 +132,20 @@ const OptionCard = ({
     type="button"
     onClick={onClick}
     aria-pressed={selected}
-    className={`w-full flex items-center gap-3.5 px-4 py-3.5 rounded-xl border text-left transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#7B5EA7]/30 ${
+    className={`w-full flex items-center gap-3 px-3 py-2.5 rounded-xl border text-left transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#7B5EA7]/30 ${
       selected
         ? "border-[#7B5EA7] bg-[#7B5EA7]/[0.06] shadow-[0_10px_24px_-18px_rgba(123,94,167,0.9)]"
         : "border-[#e6dfd3] bg-[#faf8f5] hover:border-[#c9a961] hover:bg-white"
     }`}
   >
     <span
-      className={`w-9 h-9 rounded-lg flex items-center justify-center flex-shrink-0 transition-colors duration-200 ${
+      className={`w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0 transition-colors duration-200 ${
         selected
           ? "bg-[#7B5EA7] text-white"
           : "bg-white text-[#7B5EA7] border border-[#ece5d9]"
       }`}
     >
-      <Icon className="w-[18px] h-[18px]" />
+      <Icon className="w-4 h-4" />
     </span>
     <span className="flex-1 text-sm font-medium text-[#1a1a18]">{label}</span>
     <span
@@ -171,7 +171,7 @@ const PriceChip = ({
     type="button"
     onClick={onClick}
     aria-pressed={selected}
-    className={`px-4 py-5 rounded-xl border text-center text-sm font-medium transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#7B5EA7]/30 ${
+    className={`px-3 py-3 rounded-xl border text-center text-sm font-medium transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#7B5EA7]/30 ${
       selected
         ? "border-[#7B5EA7] bg-[#7B5EA7] text-white shadow-[0_12px_26px_-18px_rgba(123,94,167,1)]"
         : "border-[#e6dfd3] bg-[#faf8f5] text-[#1a1a18] hover:border-[#c9a961] hover:bg-white"
@@ -182,8 +182,8 @@ const PriceChip = ({
 );
 
 const StepProgress = ({ step, word }: { step: Step; word: string }) => (
-  <div className="mb-7">
-    <div className="flex items-center justify-between mb-2.5">
+  <div className="mb-3">
+    <div className="flex items-center justify-between mb-1">
       <span className="eyebrow">
         {word} {step} / 3
       </span>
@@ -399,37 +399,37 @@ export const InvestmentPage = () => {
       <main className="flex-1">
         {/* ── Hero — text only, centred ────────────────── */}
         <section className="w-full bg-[#faf8f5]">
-          <Container className="py-12 sm:py-16 lg:py-20 text-center">
-            <div className="mx-auto max-w-2xl">
-              <div className="inline-flex items-center gap-2 mb-5">
-                <span className="w-6 h-px bg-[#C9A961]" />
+          <Container className="py-2 sm:py-2.5 lg:py-3 text-center">
+            <div className="mx-auto max-w-lg">
+              <div className="inline-flex items-center gap-1.5 mb-1">
+                <span className="w-4 h-px bg-[#C9A961]" />
                 <span className="eyebrow">{t.investment.eyebrow}</span>
-                <span className="w-6 h-px bg-[#C9A961]" />
+                <span className="w-4 h-px bg-[#C9A961]" />
               </div>
 
-              <h1 className="font-display text-[1.75rem] sm:text-[2.25rem] lg:text-[2.75rem] font-normal leading-[1.1] tracking-[-0.02em] text-[#1a1a18]">
+              <h1 className="font-display text-[1.35rem] sm:text-[1.75rem] lg:text-[2.1rem] font-normal leading-[1.1] tracking-[-0.02em] text-[#1a1a18]">
                 {t.investment.heroHeadline[0]}{" "}
                 <em className="not-italic text-[#7B5EA7]">{t.investment.heroHeadline[1]}</em>{" "}
                 {t.investment.heroHeadline[2]}
               </h1>
 
-              <p className="text-sm sm:text-[15px] text-[#6b6660] leading-relaxed mt-4 max-w-lg mx-auto">
+              <p className="text-[12px] text-[#6b6660] leading-snug mt-1 max-w-md mx-auto">
                 {t.investment.heroSubtitle}
               </p>
 
               {/* Decorative accent dots */}
-              <div className="flex items-center justify-center gap-1.5 mt-6">
-                <span className="w-1.5 h-1.5 rounded-full bg-[#7B5EA7]" />
-                <span className="w-1.5 h-1.5 rounded-full bg-[#7B5EA7]/40" />
-                <span className="w-1.5 h-1.5 rounded-full bg-[#7B5EA7]/20" />
+              <div className="flex items-center justify-center gap-1 mt-1.5">
+                <span className="w-1 h-1 rounded-full bg-[#7B5EA7]" />
+                <span className="w-1 h-1 rounded-full bg-[#7B5EA7]/40" />
+                <span className="w-1 h-1 rounded-full bg-[#7B5EA7]/20" />
               </div>
             </div>
           </Container>
         </section>
 
         {/* ── Form + CTA split ───────────────────────────── */}
-        <Container className="py-10 sm:py-14 lg:py-16">
-          <div className="grid lg:grid-cols-[minmax(0,1fr)_minmax(0,340px)] gap-8 lg:gap-12 items-start">
+        <Container className="py-1.5 sm:py-2 lg:py-2">
+          <div className="grid lg:grid-cols-[minmax(0,1fr)_minmax(0,280px)] gap-3 lg:gap-5 items-start">
             {/* ── Left: Multi-step form ──────────────────── */}
             <div>
               <FunnelCard>
@@ -448,10 +448,10 @@ export const InvestmentPage = () => {
                     >
                       {step === 1 && (
                         <div>
-                          <h2 className="font-display text-xl sm:text-2xl font-normal leading-snug tracking-[-0.01em] text-[#1a1a18] mb-5">
+                          <h2 className="font-display text-lg sm:text-xl font-normal leading-snug tracking-[-0.01em] text-[#1a1a18] mb-2">
                             {t.investment.step1Title}
                           </h2>
-                          <div className="flex flex-col gap-2.5">
+                          <div className="flex flex-col gap-1.5">
                             {t.investment.step1Options.map((opt, i) => (
                               <OptionCard
                                 key={opt}
@@ -465,7 +465,7 @@ export const InvestmentPage = () => {
                           <button
                             type="button"
                             onClick={handleNext}
-                            className={`${primaryButtonClass} mt-7`}
+                            className={`${primaryButtonClass} mt-4`}
                           >
                             {t.investment.next}
                             <ArrowRight className="w-4 h-4" />
@@ -475,10 +475,10 @@ export const InvestmentPage = () => {
 
                       {step === 2 && (
                         <div>
-                          <h2 className="font-display text-xl sm:text-2xl font-normal leading-snug tracking-[-0.01em] text-[#1a1a18] mb-5">
+                          <h2 className="font-display text-lg sm:text-xl font-normal leading-snug tracking-[-0.01em] text-[#1a1a18] mb-2">
                             {t.investment.step2Title}
                           </h2>
-                          <div className="grid grid-cols-2 gap-2.5">
+                          <div className="grid grid-cols-2 gap-1.5">
                             {t.investment.step2Options.map((range) => (
                               <PriceChip
                                 key={range}
@@ -488,7 +488,7 @@ export const InvestmentPage = () => {
                               />
                             ))}
                           </div>
-                          <div className="flex gap-3 mt-7">
+                          <div className="flex gap-3 mt-4">
                             <button
                               type="button"
                               onClick={handlePrev}
@@ -512,14 +512,14 @@ export const InvestmentPage = () => {
                         <Form {...form}>
                           <form
                             onSubmit={form.handleSubmit(onSubmit)}
-                            className="space-y-5"
+                            className="space-y-3"
                             noValidate
                           >
                             <div>
-                              <h2 className="font-display text-xl sm:text-2xl font-normal leading-snug tracking-[-0.01em] text-[#1a1a18]">
+                              <h2 className="font-display text-lg sm:text-xl font-normal leading-snug tracking-[-0.01em] text-[#1a1a18]">
                                 {t.investment.step3Title}
                               </h2>
-                              <div className="flex flex-wrap gap-2 mt-3">
+                              <div className="flex flex-wrap gap-2 mt-2">
                                 {[intent, priceRange]
                                   .filter(Boolean)
                                   .map((chip) => (
@@ -538,7 +538,7 @@ export const InvestmentPage = () => {
                               control={form.control}
                               name="name"
                               render={({ field, fieldState }) => (
-                                <FormItem className="space-y-2">
+                                <FormItem className="space-y-1.5">
                                   <FormLabel className={labelClass}>
                                     {t.investment.step3Label}
                                   </FormLabel>
@@ -562,7 +562,7 @@ export const InvestmentPage = () => {
                               control={form.control}
                               name="phone"
                               render={({ field, fieldState }) => (
-                                <FormItem className="space-y-2">
+                                <FormItem className="space-y-1.5">
                                   <FormLabel className={labelClass}>
                                     {t.investment.step4Label}
                                   </FormLabel>
@@ -584,7 +584,7 @@ export const InvestmentPage = () => {
                               control={form.control}
                               name="email"
                               render={({ field, fieldState }) => (
-                                <FormItem className="space-y-2">
+                                <FormItem className="space-y-1.5">
                                   <FormLabel className={labelClass}>
                                     {t.investment.step5Label}
                                   </FormLabel>
@@ -608,7 +608,7 @@ export const InvestmentPage = () => {
                               control={form.control}
                               name="consent"
                               render={({ field }) => (
-                                <FormItem className="space-y-2 pt-1">
+                                <FormItem className="space-y-1.5 pt-0.5">
                                   <div className="flex items-start gap-3">
                                     <FormControl>
                                       <input
@@ -659,16 +659,16 @@ export const InvestmentPage = () => {
             </div>
 
             {/* ── Right: CTA sidebar ─────────────────────── */}
-            <div className="flex flex-col gap-4 lg:sticky lg:top-28">
+            <div className="flex flex-col gap-2 lg:sticky lg:top-20">
               {/* Buyer's Guide */}
               <a
                 href={`${BASE}/guide`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group flex items-center gap-3.5 bg-white border border-[#ece5d9] hover:border-[#2A9D8F] rounded-2xl px-5 py-4 transition-all duration-300 hover:shadow-[0_12px_28px_-18px_rgba(42,157,143,0.3)]"
+                className="group flex items-center gap-3 bg-white border border-[#ece5d9] hover:border-[#2A9D8F] rounded-2xl px-4 py-3 transition-all duration-300 hover:shadow-[0_12px_28px_-18px_rgba(42,157,143,0.3)]"
               >
-                <span className="w-10 h-10 rounded-full bg-[#2A9D8F]/10 group-hover:bg-[#2A9D8F] flex items-center justify-center flex-shrink-0 transition-colors duration-300">
-                  <BookOpen className="w-[18px] h-[18px] text-[#2A9D8F] group-hover:text-white transition-colors duration-300" />
+                <span className="w-8 h-8 rounded-full bg-[#2A9D8F]/10 group-hover:bg-[#2A9D8F] flex items-center justify-center flex-shrink-0 transition-colors duration-300">
+                  <BookOpen className="w-4 h-4 text-[#2A9D8F] group-hover:text-white transition-colors duration-300" />
                 </span>
                 <div className="flex-1 min-w-0">
                   <span className="block text-sm font-semibold text-[#1a1a18] leading-snug">
@@ -683,18 +683,18 @@ export const InvestmentPage = () => {
 
               {/* About Isa Melo */}
               <div className="bg-white border border-[#ece5d9] rounded-2xl overflow-hidden">
-                <div className="aspect-[4/3] overflow-hidden">
+                <div className="aspect-[16/9] overflow-hidden">
                   <img
                     src={ISA_PHOTO_URL}
                     alt="Isa Melo"
                     className="w-full h-full object-cover object-top"
                   />
                 </div>
-                <div className="p-5">
+                <div className="p-3">
                   <h3 className="font-display text-base font-normal text-[#1a1a18] leading-snug">
                     About Isa Melo
                   </h3>
-                  <p className="text-xs text-[#6b6660] leading-relaxed mt-2">
+                  <p className="text-[11px] text-[#6b6660] leading-snug mt-1.5">
                     Your trusted partner in Dubai real estate. Expert guidance
                     for investors and buyers navigating the Dubai property market.
                   </p>
@@ -710,14 +710,13 @@ export const InvestmentPage = () => {
                 </div>
               </div>
 
-              {/* WhatsApp CTA */}
-              <a
-                href={WHATSAPP_URL}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="group flex items-center gap-3 bg-[#1a1a18] hover:bg-[#7B5EA7] text-white rounded-2xl px-5 py-4 transition-all duration-300"
+              {/* WhatsApp CTA */}<a
+                    href={WHATSAPP_URL}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="group flex items-center gap-3 bg-[#1a1a18] hover:bg-[#7B5EA7] text-white rounded-2xl px-3.5 py-2.5 transition-all duration-300"
               >
-                <span className="w-10 h-10 rounded-full bg-white/10 group-hover:bg-white/20 flex items-center justify-center flex-shrink-0 transition-colors duration-300">
+                <span className="w-8 h-8 rounded-full bg-white/10 group-hover:bg-white/20 flex items-center justify-center flex-shrink-0 transition-colors duration-300">
                   <Phone className="w-[18px] h-[18px]" />
                 </span>
                 <div className="flex-1 min-w-0">
@@ -735,19 +734,19 @@ export const InvestmentPage = () => {
         </Container>
 
         {/* ── Available properties ───────────────────────── */}
-        <section className="pb-12 sm:pb-16 lg:pb-20">
+        <section className="pb-3 sm:pb-4 lg:pb-5">
           <Container>
-            <div className="text-center mb-8 sm:mb-10">
+            <div className="text-center mb-2 sm:mb-3">
               <p className="eyebrow mb-3">Portfolio</p>
               <h2 className="font-display text-2xl sm:text-3xl font-normal tracking-[-0.02em] text-[#1a1a18]">
                 Available Properties
               </h2>
-              <p className="text-sm text-[#6b6660] mt-2 max-w-md mx-auto">
+              <p className="text-xs text-[#6b6660] mt-1 max-w-md mx-auto">
                 Handpicked premium listings across Dubai's most sought-after locations.
               </p>
             </div>
 
-            <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5">
+            <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-2.5 sm:gap-3">
               {PROPERTIES.map((p) => (
                 <PropertyCard key={p.name} {...p} t={t} />
               ))}

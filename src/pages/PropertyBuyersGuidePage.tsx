@@ -1,10 +1,11 @@
-import React, { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import { CalendarCheck, ArrowLeft, ExternalLink, ChevronDown } from "lucide-react";
-import { getDict, useLang, useSetLang, LANGS } from "@/lib/i18n";
+import React from "react";
+import { Link } from "react-router-dom";
+import { CalendarCheck } from "lucide-react";
+import { getDict, useLang } from "@/lib/i18n";
+import PageHeader from "@/components/PageHeader";
+import PageFooter from "@/components/PageFooter";
 import Container from "@/components/Container";
 import WhatsAppIcon from "@/components/icons/WhatsAppIcon";
-import InstagramIcon from "@/components/icons/InstagramIcon";
 import {
   RoiIcon,
   TaxFreeIcon,
@@ -23,77 +24,9 @@ import {
   MapPinIcon,
   CheckPremiumIcon,
 } from "@/components/icons/GuideIcons";
-import { WHATSAPP_URL, SITE_URL } from "@/lib/constants";
+import { WHATSAPP_URL } from "@/lib/constants";
 
-/* ── Custom Header ────────────────────────────────────── */
-const Header = ({ lang }: { lang: string }) => {
-  const navigate = useNavigate();
-  const setLang = useSetLang();
-  const [langOpen, setLangOpen] = useState(false);
 
-  return (
-    <header className="sticky top-0 z-50 bg-[#F8F6F1]/90 backdrop-blur-md border-b border-[#E8E3D9]">
-      <div className="max-w-[960px] mx-auto px-6 sm:px-8 flex items-center justify-between h-[64px]">
-        {/* Left: Back */}
-        <button
-          onClick={() => navigate(`/?lang=${lang}`)}
-          className="flex items-center gap-1.5 text-[13px] text-[#8A8580] hover:text-[#171716] transition-colors"
-        >
-          <ArrowLeft className="w-4 h-4" />
-          Back
-        </button>
-
-        {/* Center: Logo */}
-        <div className="flex items-center gap-2">
-          <svg className="w-5 h-5 text-[#B89552]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round">
-            <rect x="3" y="10" width="18" height="12" rx="1" />
-            <path d="M7 10V6a5 5 0 0110 0v4" />
-            <line x1="12" y1="14" x2="12" y2="18" />
-          </svg>
-          <span className="font-display text-[14px] tracking-[0.08em] text-[#171716] font-medium">ISA MELO</span>
-        </div>
-
-        {/* Right: Language + Visit Site */}
-        <div className="flex items-center gap-3">
-          {/* Language selector */}
-          <div className="relative">
-            <button
-              onClick={() => setLangOpen(!langOpen)}
-              className="flex items-center gap-1 text-[11px] text-[#8A8580] hover:text-[#171716] transition-colors uppercase tracking-wider"
-            >
-              {lang.toUpperCase()}
-              <ChevronDown className="w-3 h-3" />
-            </button>
-            {langOpen && (
-              <div className="absolute right-0 top-full mt-1 bg-white border border-[#E8E3D9] rounded-lg shadow-lg py-1 min-w-[80px] z-50">
-                {LANGS.map((l) => (
-                  <button
-                    key={l}
-                    onClick={() => { setLang(l); setLangOpen(false); }}
-                    className={`block w-full text-left px-3 py-1.5 text-[12px] hover:bg-[#F3EFE8] transition-colors ${l === lang ? "text-[#B89552] font-medium" : "text-[#171716]"}`}
-                  >
-                    {l.toUpperCase()}
-                  </button>
-                ))}
-              </div>
-            )}
-          </div>
-
-          {/* Visit Site */}
-          <a
-            href={SITE_URL}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="hidden sm:inline-flex items-center gap-1.5 bg-[#171716] hover:bg-[#7351A6] text-white text-[11px] font-medium px-3.5 py-1.5 rounded-full transition-all duration-300"
-          >
-            Visit Site
-            <ExternalLink className="w-3 h-3" />
-          </a>
-        </div>
-      </div>
-    </header>
-  );
-};
 
 /* ── Section heading ──────────────────────────────────── */
 const SectionHeading = ({ icon: Icon, children }: { icon: React.FC<{ className?: string }>; children: React.ReactNode }) => (
@@ -143,16 +76,16 @@ export const PropertyBuyersGuidePage = () => {
 
   return (
     <div className="min-h-screen bg-[#F8F6F1] text-[#171716] flex flex-col">
-      <Header lang={lang} />
+      <PageHeader lang={lang} backTo={`/?lang=${lang}`} backLabel={t.guide.back} />
 
       <main className="flex-1">
         {/* ════════════════════════════════════════════════════
             HERO CARD
         ════════════════════════════════════════════════════ */}
         <section className="pt-8 pb-6">
-          <div className="max-w-[960px] mx-auto px-6 sm:px-8">
+          <div className="max-w-6xl mx-auto px-5 sm:px-8">
             <div className="bg-white rounded-[20px] border border-[#E8E3D9] shadow-[0_2px_20px_-4px_rgba(0,0,0,0.04)] overflow-hidden">
-              <div className="grid lg:grid-cols-[minmax(0,1fr)_minmax(0,440px)]">
+              <div className="grid lg:grid-cols-2">
                 {/* Left: Text */}
                 <div className="p-8 sm:p-10 lg:p-12 flex flex-col justify-center">
                   <div className="flex items-center gap-2.5 mb-5">
@@ -181,10 +114,29 @@ export const PropertyBuyersGuidePage = () => {
                     <span className="w-[3px] h-[3px] rounded-full bg-[#D4CFC7]" />
                     <span>Updated September 2026</span>
                   </div>
+
+                  <div className="flex items-center gap-2.5 mt-6 flex-wrap">
+                    <Link
+                      to={`/consult-with-isa?lang=${lang}`}
+                      className="inline-flex items-center justify-center gap-2 bg-[#7351A6] hover:bg-[#5B3D8F] text-white font-semibold px-5 py-2.5 rounded-[10px] text-[12px] transition-all duration-300 active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#7351A6]/40"
+                    >
+                      <CalendarCheck className="w-3.5 h-3.5" />
+                      {t.guide.ctaConsult}
+                    </Link>
+                    <a
+                      href={WHATSAPP_URL}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center justify-center gap-2 bg-[#171716] hover:bg-[#7351A6] text-white font-semibold px-5 py-2.5 rounded-[10px] text-[12px] transition-all duration-300 active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#7351A6]/40"
+                    >
+                      <WhatsAppIcon className="w-3.5 h-3.5 fill-current" />
+                      WhatsApp
+                    </a>
+                  </div>
                 </div>
 
                 {/* Right: Image + Floating Card */}
-                <div className="relative min-h-[320px] lg:min-h-0">
+                <div className="relative min-h-[280px] lg:min-h-full">
                   <img
                     src="https://images.unsplash.com/photo-1512453979798-5ea266f8880c?w=800&q=80"
                     alt="Dubai Skyline"
@@ -218,7 +170,7 @@ export const PropertyBuyersGuidePage = () => {
             STATS ROW
         ════════════════════════════════════════════════════ */}
         <section className="py-8">
-          <div className="max-w-[960px] mx-auto px-6 sm:px-8">
+          <div className="max-w-6xl mx-auto px-5 sm:px-8">
             <div className="bg-white rounded-[20px] border border-[#E8E3D9] shadow-[0_2px_20px_-4px_rgba(0,0,0,0.04)] p-8 sm:p-10">
               <div className="grid grid-cols-3 gap-8 sm:gap-12">
                 {stats.map(({ icon: Icon, value, label, desc }) => (
@@ -244,7 +196,7 @@ export const PropertyBuyersGuidePage = () => {
             CONTENT SECTIONS 01 – 03
         ════════════════════════════════════════════════════ */}
         <section className="pb-6">
-          <div className="max-w-[960px] mx-auto px-6 sm:px-8 space-y-4">
+          <div className="max-w-6xl mx-auto px-5 sm:px-8 space-y-4">
             {/* 01 */}
             <div className="bg-white rounded-[18px] border border-[#E8E3D9] p-7 sm:p-8">
               <div className="flex items-start gap-5">
@@ -305,7 +257,7 @@ export const PropertyBuyersGuidePage = () => {
             REQUIREMENTS & BENEFITS
         ════════════════════════════════════════════════════ */}
         <section className="pb-8">
-          <div className="max-w-[960px] mx-auto px-6 sm:px-8">
+          <div className="max-w-6xl mx-auto px-5 sm:px-8">
             <div className="grid sm:grid-cols-2 gap-4">
               {/* What You'll Need */}
               <div className="bg-white rounded-[18px] border border-[#E8E3D9] p-7 sm:p-8">
@@ -366,7 +318,7 @@ export const PropertyBuyersGuidePage = () => {
             CTA
         ════════════════════════════════════════════════════ */}
         <section className="pb-12">
-          <div className="max-w-[960px] mx-auto px-6 sm:px-8">
+          <div className="max-w-6xl mx-auto px-5 sm:px-8">
             <div className="relative overflow-hidden rounded-[20px] bg-[#171716] px-8 sm:px-12 py-12 sm:py-14">
               <div
                 aria-hidden="true"
@@ -415,39 +367,7 @@ export const PropertyBuyersGuidePage = () => {
         </section>
       </main>
 
-      {/* ════════════════════════════════════════════════════
-          FOOTER
-      ════════════════════════════════════════════════════ */}
-      <footer className="mt-auto border-t border-[#E8E3D9]">
-        <div className="max-w-[960px] mx-auto px-6 sm:px-8 flex flex-col-reverse sm:flex-row items-center justify-between gap-4 py-6">
-          <p className="text-[11px] text-[#8A8580] text-center sm:text-left">
-            © {new Date().getFullYear()} {t.guide.footer}
-          </p>
-          <div className="flex items-center gap-2">
-            <a
-              href="https://www.instagram.com/isamelo.realestate/"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="Follow on Instagram"
-              className="w-8 h-8 rounded-full flex items-center justify-center transition-transform hover:scale-110"
-              style={{
-                background: "radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%)",
-              }}
-            >
-              <InstagramIcon className="w-3.5 h-3.5" />
-            </a>
-            <a
-              href={WHATSAPP_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="Chat on WhatsApp"
-              className="w-8 h-8 rounded-full bg-[#25D366] flex items-center justify-center transition-transform hover:scale-110"
-            >
-              <WhatsAppIcon className="w-3.5 h-3.5 fill-white" />
-            </a>
-          </div>
-        </div>
-      </footer>
+      <PageFooter text={t.guide.footer} />
     </div>
   );
 };

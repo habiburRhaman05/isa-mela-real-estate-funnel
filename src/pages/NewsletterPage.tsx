@@ -134,29 +134,29 @@ export const NewsletterPage = () => {
       />
 
       <main className="flex-1">
-        <Container className="py-10 sm:py-14 lg:py-20">
+        <Container className="py-4 sm:py-5 lg:py-6">
           {/* ── Top: Headline only, centered, no bg ─────── */}
-          <div className="text-center max-w-2xl mx-auto mb-12 sm:mb-16">
+          <div className="text-center max-w-2xl mx-auto mb-5 sm:mb-6">
             <span className="eyebrow text-[#7B5EA7]">{t.newsletter.eyebrow}</span>
-            <h1 className="font-display text-[1.8rem] sm:text-[2.2rem] lg:text-[2.8rem] font-normal leading-[1.1] tracking-[-0.02em] text-[#1a1a18] mt-3">
+            <h1 className="font-display text-[1.35rem] sm:text-[1.75rem] lg:text-[2.2rem] font-normal leading-[1.1] tracking-[-0.02em] text-[#1a1a18] mt-2">
               {t.newsletter.headline[0]}{" "}
               <em className="not-italic text-[#7B5EA7]">
                 {t.newsletter.headline[1]}
               </em>
             </h1>
-            <p className="mt-4 text-sm sm:text-[15px] text-[#8a847c] leading-relaxed max-w-lg mx-auto">
+            <p className="mt-2 text-[13px] text-[#8a847c] leading-snug max-w-lg mx-auto">
               {t.newsletter.subtitle}
             </p>
           </div>
 
           {/* ── Middle: Bento grid ────────────────────────── */}
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 sm:gap-5">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-3 sm:gap-4">
             {/* Form card — large, left 5 cols */}
-            <div className="lg:col-span-5 bg-white border border-[#ece5d9] rounded-[1.75rem] shadow-[0_20px_50px_-30px_rgba(26,26,24,0.35)] p-6 sm:p-8 flex flex-col">
+            <div className="lg:col-span-5 bg-white border border-[#ece5d9] rounded-[1.75rem] shadow-[0_20px_50px_-30px_rgba(26,26,24,0.35)] p-4 sm:p-5 flex flex-col">
               <h2 className="font-display text-xl font-normal text-[#1a1a18] text-center mb-1">
                 {t.newsletter.formTitle}
               </h2>
-              <div className="w-10 h-[2px] bg-[#7B5EA7] rounded-full mx-auto mt-2 mb-6" />
+              <div className="w-10 h-[2px] bg-[#7B5EA7] rounded-full mx-auto mt-1.5 mb-4" />
 
               {isSubmitted ? (
                 <FormSuccess
@@ -167,7 +167,7 @@ export const NewsletterPage = () => {
                 <Form {...form}>
                   <form
                     onSubmit={form.handleSubmit(onSubmit)}
-                    className="w-full space-y-4 flex-1 flex flex-col"
+                    className="w-full space-y-3 flex-1 flex flex-col"
                     noValidate
                   >
                     <FormField
@@ -272,67 +272,63 @@ export const NewsletterPage = () => {
               const b = benefits[0];
               const Icon = ICON_MAP[b.icon] || Zap;
               return (
-                <div className="lg:col-span-7 bg-gradient-to-br from-[#7B5EA7] to-[#5B3D8F] rounded-[1.75rem] p-7 sm:p-8 flex flex-col justify-between text-white relative overflow-hidden">
+                <div className="lg:col-span-7 bg-gradient-to-br from-[#7B5EA7] to-[#5B3D8F] rounded-[1.75rem] px-4 py-3 flex flex-row items-center gap-2.5 text-white relative overflow-hidden">
                   {/* Decorative circle */}
                   <div className="absolute -top-16 -right-16 w-48 h-48 bg-white/10 rounded-full" />
                   <div className="absolute bottom-8 left-6 w-24 h-24 bg-white/5 rounded-full" />
-                  <div className="relative z-10">
-                    <span className="inline-flex items-center gap-2 bg-white/15 backdrop-blur-sm rounded-full px-3 py-1 text-[11px] font-semibold tracking-wide mb-4">
-                      <span className="w-1.5 h-1.5 rounded-full bg-white animate-pulse" />
-                      {t.newsletter.eyebrow}
-                    </span>
-                    <h3 className="text-xl sm:text-2xl font-display font-normal leading-snug">
+                  <span className="w-8 h-8 rounded-lg bg-white/15 flex items-center justify-center flex-shrink-0">
+                    <Icon className="w-3.5 h-3.5 text-white" />
+                  </span>
+                  <div className="relative z-10 min-w-0 flex flex-wrap items-baseline gap-x-1">
+                    <span className="text-[13px] font-semibold leading-snug">
                       {b.title}
-                    </h3>
-                    <p className="text-sm text-white/70 leading-relaxed mt-3 max-w-sm">
+                    </span>
+                    <span className="text-[11px] text-white/70 leading-snug">
                       {b.desc}
-                    </p>
-                  </div>
-                  <div className="relative z-10 mt-6">
-                    <span className="w-14 h-14 rounded-2xl bg-white/15 flex items-center justify-center">
-                      <Icon className="w-7 h-7 text-white" />
                     </span>
                   </div>
                 </div>
               );
-            })()}
-
-            {/* Benefit 2 — left 6 cols */}
+            })()}            {/* Benefit 2 — left 6 cols */}
             {(() => {
               const b = benefits[1];
               const Icon = ICON_MAP[b.icon] || Zap;
               return (
-                <div className="lg:col-span-6 bg-white border border-[#ece5d9] rounded-[1.75rem] px-6 py-6 flex flex-col transition-all duration-300 hover:shadow-[0_12px_32px_-12px_rgba(26,26,24,0.1)] hover:border-[#7B5EA7]/20 relative overflow-hidden">
+                <div className="lg:col-span-6 bg-white border border-[#ece5d9] rounded-[1.75rem] px-3 py-2.5 flex flex-row items-center gap-2 transition-all duration-300 hover:shadow-[0_12px_32px_-12px_rgba(26,26,24,0.1)] hover:border-[#7B5EA7]/20 relative overflow-hidden">
                   <div className="absolute -bottom-8 -right-8 w-32 h-32 bg-[#2A9D8F]/5 rounded-full" />
-                  <span className="w-12 h-12 rounded-2xl bg-[#2A9D8F]/10 flex items-center justify-center mb-4">
-                    <Icon className="w-6 h-6 text-[#2A9D8F]" />
+                  <span className="w-7 h-7 rounded-lg bg-[#2A9D8F]/10 flex items-center justify-center flex-shrink-0">
+                    <Icon className="w-3.5 h-3.5 text-[#2A9D8F]" />
                   </span>
-                  <h3 className="text-base font-semibold text-[#1a1a18]">
-                    {b.title}
-                  </h3>
-                  <p className="text-[13px] text-[#8a847c] leading-relaxed mt-2">
-                    {b.desc}
-                  </p>
+                  <div className="min-w-0 flex flex-wrap items-baseline gap-x-1">
+                    <span className="text-[13px] font-semibold text-[#1a1a18] leading-snug">
+                      {b.title}
+                    </span>
+                    <span className="text-[11px] text-[#8a847c] leading-snug">
+                      {b.desc}
+                    </span>
+                  </div>
                 </div>
               );
-            })()}
+            })()} 
 
             {/* Benefit 3 — right 6 cols */}
             {(() => {
               const b = benefits[2];
               const Icon = ICON_MAP[b.icon] || Zap;
               return (
-                <div className="lg:col-span-6 bg-white border border-[#ece5d9] rounded-[1.75rem] px-6 py-6 flex flex-col transition-all duration-300 hover:shadow-[0_12px_32px_-12px_rgba(26,26,24,0.1)] hover:border-[#C9A961]/20 relative overflow-hidden">
+                <div className="lg:col-span-6 bg-white border border-[#ece5d9] rounded-[1.75rem] px-3 py-2.5 flex flex-row items-center gap-2 transition-all duration-300 hover:shadow-[0_12px_32px_-12px_rgba(26,26,24,0.1)] hover:border-[#C9A961]/20 relative overflow-hidden">
                   <div className="absolute -bottom-8 -right-8 w-32 h-32 bg-[#C9A961]/5 rounded-full" />
-                  <span className="w-12 h-12 rounded-2xl bg-[#C9A961]/10 flex items-center justify-center mb-4">
-                    <Icon className="w-6 h-6 text-[#C9A961]" />
+                  <span className="w-7 h-7 rounded-lg bg-[#C9A961]/10 flex items-center justify-center flex-shrink-0">
+                    <Icon className="w-3.5 h-3.5 text-[#C9A961]" />
                   </span>
-                  <h3 className="text-base font-semibold text-[#1a1a18]">
-                    {b.title}
-                  </h3>
-                  <p className="text-[13px] text-[#8a847c] leading-relaxed mt-2">
-                    {b.desc}
-                  </p>
+                  <div className="min-w-0 flex flex-wrap items-baseline gap-x-1">
+                    <span className="text-[13px] font-semibold text-[#1a1a18] leading-snug">
+                      {b.title}
+                    </span>
+                    <span className="text-[11px] text-[#8a847c] leading-snug">
+                      {b.desc}
+                    </span>
+                  </div>
                 </div>
               );
             })()}
@@ -340,8 +336,8 @@ export const NewsletterPage = () => {
 
           {/* ── Bottom: Horizontal CTA grid ────────────── */}
           {!isSubmitted && (
-            <div className="mt-12 sm:mt-16">
-              <div className="flex items-center gap-4 mb-6">
+            <div className="mt-5 sm:mt-6">
+              <div className="flex items-center gap-3 mb-4">
                 <div className="flex-1 h-px bg-[#ece5d9]" />
                 <span className="text-[11px] font-medium text-[#a9a299] uppercase tracking-wider whitespace-nowrap">
                   {t.newsletter.ctaOr}
@@ -349,15 +345,15 @@ export const NewsletterPage = () => {
                 <div className="flex-1 h-px bg-[#ece5d9]" />
               </div>
 
-              <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-2.5">
                 {/* Call Now */}
                 <a
                   href="tel:+12133402861"
-                  className="group relative bg-white border border-[#ece5d9] hover:border-[#2A9D8F] rounded-2xl px-5 py-5 transition-all duration-300 hover:shadow-[0_8px_24px_-10px_rgba(42,157,143,0.3)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#2A9D8F]/30 overflow-hidden"
+                  className="group relative bg-white border border-[#ece5d9] hover:border-[#2A9D8F] rounded-2xl px-4 py-3.5 transition-all duration-300 hover:shadow-[0_8px_24px_-10px_rgba(42,157,143,0.3)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#2A9D8F]/30 overflow-hidden"
                 >
                   <span className="absolute top-0 right-0 w-16 h-16 bg-[#2A9D8F]/5 rounded-bl-[3rem]" />
                   <div className="relative">
-                    <span className="w-10 h-10 rounded-xl bg-[#2A9D8F]/10 group-hover:bg-[#2A9D8F] flex items-center justify-center flex-shrink-0 transition-colors duration-300 mb-3">
+                    <span className="w-8 h-8 rounded-lg bg-[#2A9D8F]/10 group-hover:bg-[#2A9D8F] flex items-center justify-center flex-shrink-0 transition-colors duration-300 mb-2">
                       <Phone className="w-[18px] h-[18px] text-[#2A9D8F] group-hover:text-white transition-colors duration-300" />
                     </span>
                     <div className="flex items-center justify-between gap-2">
@@ -365,7 +361,7 @@ export const NewsletterPage = () => {
                         <h4 className="text-sm font-semibold text-[#1a1a18] leading-snug">
                           {t.newsletter.ctaCall}
                         </h4>
-                        <p className="text-[11px] text-[#999] leading-tight mt-1">
+                        <p className="text-[10px] text-[#999] leading-tight mt-0.5">
                           {t.newsletter.ctaCallSub}
                         </p>
                       </div>
@@ -379,11 +375,11 @@ export const NewsletterPage = () => {
                   href={BASE}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="group relative bg-white border border-[#ece5d9] hover:border-[#7B5EA7] rounded-2xl px-5 py-5 transition-all duration-300 hover:shadow-[0_8px_24px_-10px_rgba(123,94,167,0.3)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#7B5EA7]/30 overflow-hidden"
+                  className="group relative bg-white border border-[#ece5d9] hover:border-[#7B5EA7] rounded-2xl px-4 py-3.5 transition-all duration-300 hover:shadow-[0_8px_24px_-10px_rgba(123,94,167,0.3)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#7B5EA7]/30 overflow-hidden"
                 >
                   <span className="absolute top-0 right-0 w-16 h-16 bg-[#7B5EA7]/5 rounded-bl-[3rem]" />
                   <div className="relative">
-                    <span className="w-10 h-10 rounded-xl bg-[#7B5EA7]/10 group-hover:bg-[#7B5EA7] flex items-center justify-center flex-shrink-0 transition-colors duration-300 mb-3">
+                    <span className="w-8 h-8 rounded-lg bg-[#7B5EA7]/10 group-hover:bg-[#7B5EA7] flex items-center justify-center flex-shrink-0 transition-colors duration-300 mb-2">
                       <Globe className="w-[18px] h-[18px] text-[#7B5EA7] group-hover:text-white transition-colors duration-300" />
                     </span>
                     <div className="flex items-center justify-between gap-2">
@@ -391,7 +387,7 @@ export const NewsletterPage = () => {
                         <h4 className="text-sm font-semibold text-[#1a1a18] leading-snug">
                           {t.newsletter.ctaExplore}
                         </h4>
-                        <p className="text-[11px] text-[#999] leading-tight mt-1">
+                        <p className="text-[10px] text-[#999] leading-tight mt-0.5">
                           {t.newsletter.ctaExploreSub}
                         </p>
                       </div>
@@ -405,11 +401,11 @@ export const NewsletterPage = () => {
                   href={WHATSAPP_URL}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="group relative bg-white border border-[#ece5d9] hover:border-[#25D366] rounded-2xl px-5 py-5 transition-all duration-300 hover:shadow-[0_8px_24px_-10px_rgba(37,211,102,0.3)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#25D366]/30 overflow-hidden"
+                  className="group relative bg-white border border-[#ece5d9] hover:border-[#25D366] rounded-2xl px-4 py-3.5 transition-all duration-300 hover:shadow-[0_8px_24px_-10px_rgba(37,211,102,0.3)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#25D366]/30 overflow-hidden"
                 >
                   <span className="absolute top-0 right-0 w-16 h-16 bg-[#25D366]/5 rounded-bl-[3rem]" />
                   <div className="relative">
-                    <span className="w-10 h-10 rounded-xl bg-[#25D366]/10 group-hover:bg-[#25D366] flex items-center justify-center flex-shrink-0 transition-colors duration-300 mb-3">
+                    <span className="w-8 h-8 rounded-lg bg-[#25D366]/10 group-hover:bg-[#25D366] flex items-center justify-center flex-shrink-0 transition-colors duration-300 mb-2">
                       <svg
                         className="w-[18px] h-[18px] text-[#25D366] group-hover:text-white transition-colors duration-300 fill-current"
                         viewBox="0 0 24 24"
@@ -422,7 +418,7 @@ export const NewsletterPage = () => {
                         <h4 className="text-sm font-semibold text-[#1a1a18] leading-snug">
                           {t.newsletter.ctaWhatsapp}
                         </h4>
-                        <p className="text-[11px] text-[#999] leading-tight mt-1">
+                        <p className="text-[10px] text-[#999] leading-tight mt-0.5">
                           {t.newsletter.ctaWhatsappSub}
                         </p>
                       </div>
