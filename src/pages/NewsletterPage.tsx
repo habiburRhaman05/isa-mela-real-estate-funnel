@@ -121,7 +121,7 @@ export const NewsletterPage = () => {
     setTimeout(() => {
       setIsSubmitting(false);
       setIsSubmitted(true);
-      setTimeout(() => navigate(`/thank-you?lang=${lang}`), 1400);
+      // setTimeout(() => navigate(`/thank-you?lang=${lang}`), 1400);
     }, 600);
   };
 
