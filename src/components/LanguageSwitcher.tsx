@@ -11,6 +11,7 @@ const LANG_META: Record<Lang, { label: string; flag: string; country: string }> 
   en: { label: "EN", flag: "us", country: "English" },
   pt: { label: "PT", flag: "br", country: "Português" },
   es: { label: "ES", flag: "es", country: "Español" },
+  ar: { label: "AR", flag: "ae", country: "العربية" },
 };
 
 const FLAG_URL = (code: string) =>

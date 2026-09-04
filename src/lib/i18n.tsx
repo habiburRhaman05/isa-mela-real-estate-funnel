@@ -8,10 +8,11 @@ import {
   type ReactNode,
 } from "react";
 import { en, pt, es } from "./translations";
+import { ar } from "./translations-ar";
 
-export type Lang = "pt" | "en" | "es";
+export type Lang = "pt" | "en" | "es" | "ar";
 
-export const LANGS: Lang[] = ["en", "pt", "es"];
+export const LANGS: Lang[] = ["en", "pt", "es", "ar"];
 export const DEFAULT_LANG: Lang = "en";
 
 const STORAGE_KEY = "isa_melo_lang";
@@ -73,6 +74,7 @@ export const LangProvider = ({ children }: { children: ReactNode }) => {
 
   useEffect(() => {
     document.documentElement.lang = lang;
+    document.documentElement.dir = lang === "ar" ? "rtl" : "ltr";
   }, [lang]);
 
   const value = useMemo(() => ({ lang, setLang }), [lang, setLang]);
@@ -314,7 +316,7 @@ export type Dict = {
   };
 };
 
-export const translations: Record<Lang, Dict> = { pt, en, es };
+export const translations: Record<Lang, Dict> = { pt, en, es, ar };
 
 export function getDict(lang: Lang): Dict {
   return translations[lang] ?? translations[DEFAULT_LANG];

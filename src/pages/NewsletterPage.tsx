@@ -41,6 +41,7 @@ import {
   type NewsletterFormValues,
 } from "@/lib/schemas";
 import { WHATSAPP_URL } from "@/lib/constants";
+import { langToLanguage, langToMarket } from "@/lib/langToMarket";
 
 const BASE = "http://isamelo-realestate.vercel.app";
 
@@ -117,7 +118,9 @@ const onSubmit = async (values: NewsletterFormValues) => {
     formBody.append("first_name", firstName);
     formBody.append("last_name", lastName);
     formBody.append("email", values.email);
-    formBody.append("phone", "+"+values.phone || "");
+    formBody.append("phone", "+" + (values.phone || ""));
+    formBody.append("language", langToLanguage(lang));
+    formBody.append("market", langToMarket(lang));
 
     // 3. Make the direct Axios Post Request
     await axios.post(ghlWebhookUrl, formBody, {

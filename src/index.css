@@ -297,3 +297,46 @@ All colors MUST be HSL.
   border-color: hsl(var(--primary)) !important;
   background: #ffffff !important;
 }
+
+/* ── RTL Support for Arabic ─────────────────────────── */
+[dir="rtl"] .phone-input-field {
+  padding: 14px 52px 14px 16px !important;
+  direction: rtl;
+  text-align: right;
+}
+
+[dir="rtl"] .phone-input-container .selected-flag {
+  border-radius: 0 0.75rem 0.75rem 0 !important;
+}
+
+[dir="rtl"] .phone-input-container .flag-dropdown {
+  border-radius: 0 0.75rem 0.75rem 0 !important;
+}
+
+[dir="rtl"] .phone-input-dropdown .country .flag {
+  margin-right: 0 !important;
+  margin-left: 10px !important;
+}
+
+[dir="rtl"] .phone-input-dropdown .country .dial-code {
+  margin-left: 0 !important;
+  padding-left: 0 !important;
+  margin-right: auto !important;
+  padding-right: 12px !important;
+}
+
+/* General RTL text alignment */
+[dir="rtl"] .text-left {
+  text-align: right !important;
+}
+[dir="rtl"] .text-right {
+  text-align: left !important;
+}
+[dir="rtl"] .text-center {
+  text-align: center !important;
+}
+
+/* Flip flex direction for RTL */
+[dir="rtl"] .sm\:flex-row {
+  flex-direction: row-reverse !important;
+}

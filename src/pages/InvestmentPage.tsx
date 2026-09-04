@@ -49,6 +49,7 @@ import {
 } from "@/lib/schemas";
 import { ISA_PHOTO_URL, WHATSAPP_URL } from "@/lib/constants";
 import axios from "axios";
+import { langToLanguage, langToMarket } from "@/lib/langToMarket";
 
 const BASE = "http://isamelo-realestate.vercel.app";
 
@@ -346,6 +347,8 @@ export const InvestmentPage = () => {
       formBody.append("intent", intent);
       formBody.append("price_range", priceRange);
       formBody.append("form_name", "Investment Questionnaire");
+      formBody.append("language", langToLanguage(lang));
+      formBody.append("market", langToMarket(lang));
 
       await axios.post(
         "https://services.leadconnectorhq.com/hooks/iGbC817rCzAfj7HtPYRs/webhook-trigger/1No16nDSMWqSwb1ceFNu",
