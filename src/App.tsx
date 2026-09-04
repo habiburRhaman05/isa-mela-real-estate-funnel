@@ -10,6 +10,7 @@ import InvestmentPage from "./pages/InvestmentPage";
 import ConsultPage from "./pages/ConsultPage";
 import PropertyBuyersGuidePage from "./pages/PropertyBuyersGuidePage";
 import ThankYouPage from "./pages/ThankYouPage";
+import SocialLinksAdminPage from "./pages/SocialLinksAdminPage";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -32,6 +33,7 @@ const App = () => (
               element={<PropertyBuyersGuidePage />}
             />
             <Route path="/thank-you" element={<ThankYouPage />} />
+            <Route path="/admin/social-links" element={<SocialLinksAdminPage />} />
             {/* CATCH-ALL ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>
