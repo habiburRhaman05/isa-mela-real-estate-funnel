@@ -1,3 +1,4 @@
+import axios from "axios";
 import React, { useMemo, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
@@ -73,57 +74,73 @@ export const NewsletterPage = () => {
     mode: "onBlur",
   });
 
-  const onSubmit = (values: NewsletterFormValues) => {
-    setIsSubmitting(true);
 
-    const trackingPayload = {
-      type: "external form_submission" as const,
-      timestamp: Date.now(),
-      formId: "newsletter-early-access",
-      formData: {
-        first_name: values.name.split(" ")[0] || values.name,
-        last_name: values.name.split(" ").slice(1).join(" ") || "",
-        phone: values.phone || "",
-        phone_country: "",
-        phone_country_code: "",
-        phone_dial_code: "",
-        email: values.email,
-      },
-      formLabels: {
-        first_name: "First Name",
-        last_name: "Last Name",
-        phone: "Phone Number",
-        phone_country: "Phone Country",
-        phone_country_code: "Phone Country Code",
-        phone_dial_code: "Phone Dial Code",
-        email: "Email",
-      },
-      url: window.location.href,
-      title: document.title,
-      path: window.location.pathname,
-      userAgent: navigator.userAgent,
-      trackingId: "tk_052d6da214a342649fb05f5efd6fb348",
-      locationId: "iGbC817rCzAfj7HtPYRs",
-      projectId: "1788077166891936938",
-      sessionId: crypto.randomUUID(),
-      properties: {
-        deviceType: /Mobile|Android|iPhone/i.test(navigator.userAgent)
-          ? "mobile"
-          : "desktop",
-        source: "ai_studio",
-        projectId: "1788077166891936938",
-        formName: "Early Access Newsletter Form",
-      },
-    };
 
-    postTrackingEvent(trackingPayload);
 
-    setTimeout(() => {
-      setIsSubmitting(false);
-      setIsSubmitted(true);
-      // setTimeout(() => navigate(`/thank-you?lang=${lang}`), 1400);
-    }, 600);
-  };
+
+
+const onSubmit = async (values: NewsletterFormValues) => {
+  setIsSubmitting(true);
+
+  const firstName = values.name.split(" ")[0] || values.name;
+  const lastName = values.name.split(" ").slice(1).join(" ") || "";
+
+  const ghlWebhookUrl = "https://services.leadconnectorhq.com/hooks/iGbC817rCzAfj7HtPYRs/webhook-trigger/f7VKPnATBSUsvQ6OeaO8";
+
+  try {
+    // // 1. Fire internal tracking
+    // if (typeof postTrackingEvent === "function") {
+    //   postTrackingEvent({
+    //     type: "external form_submission" as const,
+    //     timestamp: Date.now(),
+    //     formId: "newsletter-early-access",
+    //     formData: { first_name: firstName, last_name: lastName, email: values.email, phone: values.phone || "" },
+    //     url: window.location.href,
+    //     title: document.title,
+    //     path: window.location.pathname,
+    //     userAgent: navigator.userAgent,
+    //     trackingId: "tk_052d6da214a342649fb05f5efd6fb348",
+    //     locationId: "iGbC817rCzAfj7HtPYRs",
+    //     projectId: "1788077166891936938",
+    //     sessionId: crypto.randomUUID(),
+    //     properties: {
+    //       deviceType: /Mobile|Android|iPhone/i.test(navigator.userAgent) ? "mobile" : "desktop",
+    //       source: "ai_studio",
+    //       projectId: "1788077166891936938",
+    //       formName: "Early Access Newsletter Form",
+    //     },
+    //   });
+    // }
+
+    // 2. Format fields into a URL encoded payload structure to natively step over CORS
+    const formBody = new URLSearchParams();
+    formBody.append("first_name", firstName);
+    formBody.append("last_name", lastName);
+    formBody.append("email", values.email);
+    formBody.append("phone", "+"+values.phone || "");
+
+    // 3. Make the direct Axios Post Request
+    await axios.post(ghlWebhookUrl, formBody, {
+      headers: {
+        "Content-Type": "application/x-www-form-urlencoded"
+      }
+    });
+
+    // 4. Resolve success state layouts
+    setIsSubmitted(true);
+
+  } catch (error) {
+    console.error("Submission processing crashed:", error);
+  } finally {
+    setIsSubmitting(false);
+  }
+};
+
+
+
+
+
+
 
   const benefits = t.newsletter.benefits;
 

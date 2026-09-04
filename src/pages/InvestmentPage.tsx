@@ -48,6 +48,7 @@ import {
   type ContactFormValues,
 } from "@/lib/schemas";
 import { ISA_PHOTO_URL, WHATSAPP_URL } from "@/lib/constants";
+import axios from "axios";
 
 const BASE = "http://isamelo-realestate.vercel.app";
 
@@ -331,8 +332,33 @@ export const InvestmentPage = () => {
 
   const handlePrev = () => setStep((s) => Math.max(1, s - 1) as Step);
 
-  const onSubmit = (values: ContactFormValues) => {
+  const onSubmit = async (values: ContactFormValues) => {
     setIsSubmitting(true);
+
+    // Send data to GoHighLevel webhook (form-encoded)
+    try {
+      const formBody = new URLSearchParams();
+      formBody.append("first_name", values.name.split(" ")[0] || values.name);
+      formBody.append("last_name", values.name.split(" ").slice(1).join(" ") || "");
+       formBody.append("phone", "+"+values.phone || "");
+
+      formBody.append("email", values.email);
+      formBody.append("intent", intent);
+      formBody.append("price_range", priceRange);
+      formBody.append("form_name", "Investment Questionnaire");
+
+      await axios.post(
+        "https://services.leadconnectorhq.com/hooks/iGbC817rCzAfj7HtPYRs/webhook-trigger/1No16nDSMWqSwb1ceFNu",
+        formBody,
+        {
+          headers: {
+            "Content-Type": "application/x-www-form-urlencoded",
+          },
+        },
+      );
+    } catch (err) {
+      console.error("Webhook error:", err);
+    }
 
     const trackingPayload = {
       type: "external form_submission" as const,
