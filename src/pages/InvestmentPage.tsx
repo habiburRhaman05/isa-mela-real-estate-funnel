@@ -400,14 +400,14 @@ export const InvestmentPage = () => {
         {/* ── Hero — text only, centred ────────────────── */}
         <section className="w-full bg-[#faf8f5]">
           <Container className="py-2 sm:py-2.5 lg:py-3 text-center">
-            <div className="mx-auto max-w-lg">
+            <div className="mx-auto max-w-2xl text-center">
               <div className="inline-flex items-center gap-1.5 mb-1">
                 <span className="w-4 h-px bg-[#C9A961]" />
                 <span className="eyebrow">{t.investment.eyebrow}</span>
                 <span className="w-4 h-px bg-[#C9A961]" />
               </div>
 
-              <h1 className="font-display text-[1.35rem] sm:text-[1.75rem] lg:text-[2.1rem] font-normal leading-[1.1] tracking-[-0.02em] text-[#1a1a18]">
+              <h1 className="font-display text-[1.5rem] sm:text-[2rem] lg:text-[2.5rem] font-normal leading-[1.1] tracking-[-0.02em] text-[#1a1a18] whitespace-nowrap">
                 {t.investment.heroHeadline[0]}{" "}
                 <em className="not-italic text-[#7B5EA7]">{t.investment.heroHeadline[1]}</em>{" "}
                 {t.investment.heroHeadline[2]}
