@@ -19,12 +19,12 @@ import { INSTAGRAM_URL, WHATSAPP_URL } from "@/lib/constants";
 const BASE = "http://isamelo-realestate.vercel.app";
 
 const QUICK_LINK_CONFIGS = [
-  { to: `${BASE}/projects`, icon: "/discover-icons/all-projects-icon.png" },
-  { to: `${BASE}/properties`, icon: "/discover-icons/properties-icon.png" },
-  { to: `${BASE}/about`, icon: "/discover-icons/about-us-icon.png" },
-  { to: `/property-buyers-guide`, icon: "/discover-icons/buyers-guide-icon.png" },
-  { to: `/investment`, icon: "/discover-icons/investment-icon.png" },
-  { to: `${BASE}/contact`, icon: "/discover-icons/explore-map-icon.png" },
+  { to: `${BASE}/projects`, icon: "/01_city_skyline.png" },
+  { to: `${BASE}/properties`, icon: "/03_property_home.png" },
+  { to: `${BASE}/about`, icon: "/02_chat_question.png" },
+  { to: `/property-buyers-guide`, icon: "/04_coastal_landmark.png" },
+  { to: `/investment`, icon: "/05_news_article.png" },
+  { to: `${BASE}/contact`, icon: "/06_hospitality_network.png" },
 ];
 
 export const Index = () => {

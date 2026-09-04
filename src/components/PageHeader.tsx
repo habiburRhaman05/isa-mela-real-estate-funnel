@@ -2,7 +2,7 @@ import { ArrowLeft, ExternalLink } from "lucide-react";
 import { Link } from "react-router-dom";
 import LanguageSwitcher from "@/components/LanguageSwitcher";
 import Container from "@/components/Container";
-import { LOGO_URL, WHATSAPP_URL } from "@/lib/constants";
+import { LOGO_URL, SITE_URL } from "@/lib/constants";
 import type { Lang } from "@/lib/i18n";
 
 type PageHeaderProps = {
@@ -43,7 +43,7 @@ export const PageHeader = ({ lang, backTo, backLabel }: PageHeaderProps) => (
       <div className="flex items-center gap-2 sm:gap-3 flex-shrink-0">
         <LanguageSwitcher />
         <a
-          href={WHATSAPP_URL}
+          href={SITE_URL}
           target="_blank"
           rel="noopener noreferrer"
           className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-[#1a1a18] text-white text-[11px] font-semibold tracking-wide hover:bg-[#2a2a28] transition-colors shadow-sm"

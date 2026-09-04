@@ -209,6 +209,13 @@ export type Dict = {
     trust3Sub: string;
     trust4Title: string;
     trust4Sub: string;
+    faqTitle: string;
+    faq1Q: string;
+    faq1A: string;
+    faq2Q: string;
+    faq2A: string;
+    faq3Q: string;
+    faq3A: string;
     footer: string;
   };
   guide: {

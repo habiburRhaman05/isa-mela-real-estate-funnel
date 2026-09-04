@@ -1,4 +1,5 @@
 import React, { useMemo, useState } from "react";
+import { ChevronDown } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -313,6 +314,34 @@ export const ConsultPage = () => {
           </div>
         </Container>
       </main>
+
+      {/* ── FAQ Section ──────────────────────────────────── */}
+      <section className="pb-10 sm:pb-14">
+        <Container>
+          <div className="max-w-2xl mx-auto">
+            <h2 className="font-display text-xl sm:text-2xl font-normal tracking-[-0.01em] text-[#1a1a18] text-center mb-8">
+              {t.consult.faqTitle}
+            </h2>
+            <div className="space-y-3">
+              {[
+                { q: t.consult.faq1Q, a: t.consult.faq1A },
+                { q: t.consult.faq2Q, a: t.consult.faq2A },
+                { q: t.consult.faq3Q, a: t.consult.faq3A },
+              ].map((faq, i) => (
+                <details key={i} className="group bg-white border border-[#ece5d9] rounded-2xl overflow-hidden">
+                  <summary className="flex items-center justify-between gap-4 px-6 py-5 cursor-pointer list-none text-[14px] font-medium text-[#1a1a18] hover:text-[#7B5EA7] transition-colors">
+                    {faq.q}
+                    <ChevronDown className="w-4 h-4 text-[#b5aea4] flex-shrink-0 group-open:rotate-180 transition-transform duration-200" />
+                  </summary>
+                  <div className="px-6 pb-5 text-[13px] text-[#6b6660] leading-relaxed">
+                    {faq.a}
+                  </div>
+                </details>
+              ))}
+            </div>
+          </div>
+        </Container>
+      </section>
 
       <PageFooter text={t.consult.footer} />
     </div>
