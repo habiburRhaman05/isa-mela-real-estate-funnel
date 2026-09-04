@@ -20,6 +20,7 @@ import PageHeader from "@/components/PageHeader";
 import PageFooter from "@/components/PageFooter";
 import Container from "@/components/Container";
 import FormSuccess from "@/components/FormSuccess";
+import PhoneInputField from "@/components/PhoneInputField";
 import {
   pillClass,
   labelClass,
@@ -59,6 +60,7 @@ export const NewsletterPage = () => {
     () =>
       createNewsletterSchema({
         nameError: t.newsletter.nameError,
+        phoneError: t.newsletter.phoneError,
         emailError: t.newsletter.emailError,
         consentError: t.newsletter.consentError,
       }),
@@ -81,7 +83,7 @@ export const NewsletterPage = () => {
       formData: {
         first_name: values.name.split(" ")[0] || values.name,
         last_name: values.name.split(" ").slice(1).join(" ") || "",
-        phone: "",
+        phone: values.phone || "",
         phone_country: "",
         phone_country_code: "",
         phone_dial_code: "",
@@ -150,9 +152,9 @@ export const NewsletterPage = () => {
           </div>
 
           {/* ── Middle: Bento grid ────────────────────────── */}
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-3 sm:gap-4">
-            {/* Form card — large, left 5 cols */}
-            <div className="lg:col-span-5 bg-white border border-[#ece5d9] rounded-[1.75rem] shadow-[0_20px_50px_-30px_rgba(26,26,24,0.35)] p-4 sm:p-5 flex flex-col">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-3 sm:gap-4 items-center">
+            {/* Form card — left 6 cols */}
+            <div className="lg:col-span-6 bg-white border border-[#ece5d9] rounded-[1.75rem] shadow-[0_20px_50px_-30px_rgba(26,26,24,0.35)] p-4 sm:p-5 flex flex-col">
               <h2 className="font-display text-xl font-normal text-[#1a1a18] text-center mb-1">
                 {t.newsletter.formTitle}
               </h2>
@@ -189,6 +191,26 @@ export const NewsletterPage = () => {
                               />
                             </FormControl>
                           </div>
+                          <FormMessage className="text-xs font-normal" />
+                        </FormItem>
+                      )}
+                    />
+
+                    <FormField
+                      control={form.control}
+                      name="phone"
+                      render={({ field, fieldState }) => (
+                        <FormItem className="space-y-1.5">
+                          <FormLabel className={labelClass}>
+                            {t.newsletter.phoneLabel}{" "}
+                            <span className="text-[#b5aea4] text-[10px]">(optional)</span>
+                          </FormLabel>
+                          <PhoneInputField
+                            value={field.value}
+                            onChange={(phone) => field.onChange(phone)}
+                            placeholder={t.newsletter.phonePh}
+                            hasError={!!fieldState.error}
+                          />
                           <FormMessage className="text-xs font-normal" />
                         </FormItem>
                       )}
@@ -267,21 +289,21 @@ export const NewsletterPage = () => {
               )}
             </div>
 
-            {/* Benefit 1 — tall card, right 7 cols */}
-            {(() => {
-              const b = benefits[0];
-              const Icon = ICON_MAP[b.icon] || Zap;
-              return (
-                <div className="lg:col-span-7 border rounded-[1.75rem] px-4 py-3 flex flex-row items-center gap-2.5 text-white relative overflow-hidden">
-                
-                </div>
-              );
-            })()}            {/* Benefit 2 — left 6 cols */}
+            {/* Image — right 6 cols, no border, no rounded */}
+            <div className="lg:col-span-6">
+              <img
+                src="/isa-melo.png"
+                alt=""
+                className="w-full h-auto object-cover rounded-none border-none rounded-sm"
+              />
+            </div>
+
+            {/* Benefit 2 — left 6 cols
             {(() => {
               const b = benefits[1];
               const Icon = ICON_MAP[b.icon] || Zap;
               return (
-                <div className="lg:col-span-6 bg-white border border-[#ece5d9] rounded-[1.75rem] px-3 py-2.5 flex flex-row items-center gap-2 transition-all duration-300 hover:shadow-[0_12px_32px_-12px_rgba(26,26,24,0.1)] hover:border-[#7B5EA7]/20 relative overflow-hidden">
+                <div className="lg:col-span-6 bg-white border border-[#ece5d9] rounded-[1.75rem] px-3 py-2.5 flex flex-row items-center gap-2 transition-all duration-300 hover:shadow-[0_12px_32px_-12px_rgba(26,26,24,0.1)] hover:border-[#2A9D8F]/20 relative overflow-hidden">
                   <div className="absolute -bottom-8 -right-8 w-32 h-32 bg-[#2A9D8F]/5 rounded-full" />
                   <span className="w-7 h-7 rounded-lg bg-[#2A9D8F]/10 flex items-center justify-center flex-shrink-0">
                     <Icon className="w-3.5 h-3.5 text-[#2A9D8F]" />
@@ -296,10 +318,10 @@ export const NewsletterPage = () => {
                   </div>
                 </div>
               );
-            })()} 
+            })()} */}
 
             {/* Benefit 3 — right 6 cols */}
-            {(() => {
+            {/* {(() => {
               const b = benefits[2];
               const Icon = ICON_MAP[b.icon] || Zap;
               return (
@@ -318,7 +340,7 @@ export const NewsletterPage = () => {
                   </div>
                 </div>
               );
-            })()}
+            })()} */}
           </div>
 
           {/* ── Bottom: Horizontal CTA grid ────────────── */}

@@ -125,6 +125,7 @@ export type Dict = {
     formSubtitle: string;
     nameLabel: string;
     namePh: string;
+    phoneLabel: string;
     phonePh: string;
     emailLabel: string;
     emailPh: string;
