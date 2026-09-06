@@ -61,7 +61,7 @@ export const ConsultPage = () => {
 
           {/* ── GHL Calendar Embed ────────────────── */}
           <div className="mx-auto max-w-2xl">
-            <div className="bg-white border border-[#ece5d9] rounded-[1.75rem] shadow-[0_20px_50px_-30px_rgba(26,26,24,0.35)] overflow-hidden p-1">
+            <div className=" overflow-hidden p-1">
               <iframe
                 src={`https://api.leadconnectorhq.com/widget/booking/${GHL_BOOKING_ID}`}
                 allow="payment"
