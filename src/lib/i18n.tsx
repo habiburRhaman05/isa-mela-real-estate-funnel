@@ -8,10 +8,11 @@ import {
   type ReactNode,
 } from "react";
 import { en, pt, es } from "./translations";
+import { ar } from "./translations-ar";
 
-export type Lang = "pt" | "en" | "es";
+export type Lang = "pt" | "en" | "es" | "ar";
 
-export const LANGS: Lang[] = ["en", "pt", "es"];
+export const LANGS: Lang[] = ["en", "pt", "es", "ar"];
 export const DEFAULT_LANG: Lang = "en";
 
 const STORAGE_KEY = "isa_melo_lang";
@@ -73,6 +74,7 @@ export const LangProvider = ({ children }: { children: ReactNode }) => {
 
   useEffect(() => {
     document.documentElement.lang = lang;
+    document.documentElement.dir = lang === "ar" ? "rtl" : "ltr";
   }, [lang]);
 
   const value = useMemo(() => ({ lang, setLang }), [lang, setLang]);
@@ -106,13 +108,28 @@ export type Dict = {
     eyebrow: string;
     headline: [string, string];
     whatsapp: string;
+    explore: string;
+    discoverMore: string;
+    quickProjects: string;
+    quickProperties: string;
+    quickAbout: string;
+    quickGuide: string;
+    quickInvest: string;
+    quickMap: string;
     footer: string;
   };
   newsletter: {
     eyebrow: string;
     headline: [string, string];
+    subtitle: string;
+    benefits: { icon: string; title: string; desc: string }[];
+    formTitle: string;
+    formSubtitle: string;
+    nameLabel: string;
     namePh: string;
+    phoneLabel: string;
     phonePh: string;
+    emailLabel: string;
     emailPh: string;
     consent: string;
     submit: string;
@@ -124,10 +141,22 @@ export type Dict = {
     phoneError: string;
     emailError: string;
     consentError: string;
+    ctaOr: string;
+    ctaCall: string;
+    ctaCallSub: string;
+    ctaExplore: string;
+    ctaExploreSub: string;
+    ctaWhatsapp: string;
+    ctaWhatsappSub: string;
     footer: string;
   };
   investment: {
     eyebrow: string;
+    heroHeadline: [string, string, string];
+    heroSubtitle: string;
+    featured: string;
+    viewDetails: string;
+    available: string;
     step1Title: string;
     step1Options: string[];
     step2Title: string;
@@ -175,6 +204,33 @@ export type Dict = {
     emailError: string;
     consentError: string;
     reassurance: string;
+    trust1Title: string;
+    trust1Sub: string;
+    trust2Title: string;
+    trust2Sub: string;
+    trust3Title: string;
+    trust3Sub: string;
+    trust4Title: string;
+    trust4Sub: string;
+    faqTitle: string;
+    faq1Q: string;
+    faq1A: string;
+    faq2Q: string;
+    faq2A: string;
+    faq3Q: string;
+    faq3A: string;
+    pickDate: string;
+    pickTime: string;
+    anyNotes: string;
+    timezone: string;
+    notesLabel: string;
+    notesPh: string;
+    back: string;
+    next: string;
+    confirmBooking: string;
+    jumpToToday: string;
+    days: string[];
+    months: string[];
     footer: string;
   };
   guide: {
@@ -206,6 +262,36 @@ export type Dict = {
     ctaBody: string;
     ctaConsult: string;
     ctaWhatsapp: string;
+    statRoiDesc: string;
+    statTaxLabel: string;
+    statTaxDesc: string;
+    statFreeholdDesc: string;
+    reqsTitle: string;
+    reqPassport: string;
+    reqPassportDesc: string;
+    reqFunds: string;
+    reqFundsDesc: string;
+    reqEmiratesId: string;
+    reqEmiratesIdDesc: string;
+    reqPropertyDocs: string;
+    reqPropertyDocsDesc: string;
+    reqNote: string;
+    perksTitle: string;
+    perkInfrastructure: string;
+    perkInfrastructureDesc: string;
+    perkRental: string;
+    perkRentalDesc: string;
+    perkLocation: string;
+    perkLocationDesc: string;
+    perkLifestyle: string;
+    perkLifestyleDesc: string;
+    heroCtaTitle: string;
+    heroCardTitle: string;
+    heroFreehold: string;
+    heroOwnership: string;
+    heroReadTime: string;
+    heroLocation: string;
+    heroUpdated: string;
     footer: string;
   };
   thankYou: {
@@ -213,6 +299,13 @@ export type Dict = {
     line1: string;
     line2: string;
     back: string;
+    whatNext: string;
+    bookingConfirmed: string;
+    bookingConfirmedSub: string;
+    quickResponse: string;
+    quickResponseSub: string;
+    globalExpertise: string;
+    globalExpertiseSub: string;
     footer: string;
   };
   notFound: {
@@ -223,7 +316,7 @@ export type Dict = {
   };
 };
 
-export const translations: Record<Lang, Dict> = { pt, en, es };
+export const translations: Record<Lang, Dict> = { pt, en, es, ar };
 
 export function getDict(lang: Lang): Dict {
   return translations[lang] ?? translations[DEFAULT_LANG];

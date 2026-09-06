@@ -8,3 +8,4 @@ export const SKYLINE_URL =
 
 export const WHATSAPP_URL = "https://wa.me/12133402861";
 export const INSTAGRAM_URL = "https://www.instagram.com/isamelo.realestate/";
+export const SITE_URL = "https://isamelo-realestate.vercel.app";

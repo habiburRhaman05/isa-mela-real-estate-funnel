@@ -1,7 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import {
-  Instagram,
   ArrowRight,
   TrendingUp,
   BookOpen,
@@ -14,7 +13,19 @@ import PageFooter from "@/components/PageFooter";
 import PhotoCollage from "@/components/PhotoCollage";
 import Container from "@/components/Container";
 import WhatsAppIcon from "@/components/icons/WhatsAppIcon";
+import InstagramIcon from "@/components/icons/InstagramIcon";
 import { INSTAGRAM_URL, WHATSAPP_URL } from "@/lib/constants";
+
+const BASE = "http://isamelo-realestate.vercel.app";
+
+const QUICK_LINK_CONFIGS = [
+  { to: `${BASE}/projects`, icon: "/icon_02_question_chat.png" },
+  { to: `${BASE}/properties`, icon: "/icon_03_home_map.png" },
+  { to: `${BASE}/about`, icon: "/icon_01_cityscape.png" },
+  { to: `/property-buyers-guide`, icon: "/icon_04_sun_landscape.png" },
+  { to: `/investment`, icon: "/icon_05_news_document.png" },
+  { to: `${BASE}/contact`, icon: "/icon_06_travel_services.png" },
+];
 
 export const Index = () => {
   const lang = useLang();
@@ -32,23 +43,24 @@ export const Index = () => {
       <PageHeader lang={lang} />
 
       <main className="flex-1">
-        <Container className="grid lg:grid-cols-[minmax(0,420px)_minmax(0,1fr)] gap-10 lg:gap-16 xl:gap-20 items-center py-10 sm:py-14 lg:py-16">
+        {/* ── Hero ───────────────────────────────────────────── */}
+        <Container className="grid lg:grid-cols-2 gap-6 sm:gap-0  items-center py-4 sm:py-5 lg:py-6 pb-2 sm:pb-3 lg:pb-4">
           <PhotoCollage size="tall" />
 
           <div className="flex flex-col items-center lg:items-start text-center lg:text-left">
-            <div className="flex items-center gap-3 mb-5">
+            <div className="flex items-center gap-3 mb-3">
               <span className="hidden lg:block w-8 h-px bg-[#c9a961]" />
               <span className="eyebrow">{t.home.eyebrow}</span>
             </div>
 
-            <h1 className="font-display text-[2rem] sm:text-5xl xl:text-[3.35rem] font-normal leading-[1.08] tracking-[-0.02em] text-[#1a1a18] max-w-[19ch]">
+            <h1 className="font-display text-[1.75rem] sm:text-[2.5rem] xl:text-[3rem] font-normal leading-[1.1] tracking-[-0.02em] text-[#1a1a18] max-w-[19ch]">
               {t.home.headline[0]}{" "}
               <em className="not-italic text-[#7B5EA7]">
                 {t.home.headline[1]}
               </em>
             </h1>
 
-            <div className="flex items-center gap-3 mt-8">
+            <div className="flex items-center gap-3 mt-5">
               <a
                 href={WHATSAPP_URL}
                 target="_blank"
@@ -65,21 +77,21 @@ export const Index = () => {
                 aria-label="Instagram"
                 className="w-12 h-12 rounded-full border border-[#e6dfd3] bg-white hover:border-[#c9a961] flex items-center justify-center transition-all hover:scale-105 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#7B5EA7]/30"
               >
-                <Instagram className="w-[18px] h-[18px] text-[#1a1a18]" />
+                <InstagramIcon className="w-5 h-5" />
               </a>
             </div>
 
-            <nav className="w-full max-w-lg mt-10 flex flex-col gap-2.5">
+            <nav className="w-full max-w-lg mt-5 flex flex-col gap-1.5">
               {navLinks.map(({ to, label, icon: Icon }) => (
                 <Link
                   key={to}
                   to={`${to}?lang=${lang}`}
-                  className="group flex items-center gap-4 bg-white border border-[#ece5d9] hover:border-[#c9a961] rounded-2xl px-5 py-4 transition-all duration-300 hover:shadow-[0_14px_30px_-20px_rgba(26,26,24,0.4)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#7B5EA7]/30 text-left"
+                  className="group flex items-center gap-2.5 bg-white border border-[#ece5d9] hover:border-[#c9a961] rounded-xl px-3 py-2 transition-all duration-300 hover:shadow-[0_14px_30px_-20px_rgba(26,26,24,0.4)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#7B5EA7]/30 text-left"
                 >
-                  <span className="w-10 h-10 rounded-full bg-[#f5f1ea] group-hover:bg-[#7B5EA7] flex items-center justify-center flex-shrink-0 transition-colors duration-300">
-                    <Icon className="w-[18px] h-[18px] text-[#7B5EA7] group-hover:text-white transition-colors duration-300" />
+                  <span className="w-7 h-7 rounded-full bg-[#f5f1ea] group-hover:bg-[#7B5EA7] flex items-center justify-center flex-shrink-0 transition-colors duration-300">
+                    <Icon className="w-3.5 h-3.5 text-[#7B5EA7] group-hover:text-white transition-colors duration-300" />
                   </span>
-                  <span className="flex-1 text-sm font-medium text-[#1a1a18] leading-snug">
+                  <span className="flex-1 text-[13px] font-medium text-[#1a1a18] leading-snug">
                     {label}
                   </span>
                   <ArrowRight className="w-4 h-4 text-[#b5aea4] group-hover:text-[#7B5EA7] group-hover:translate-x-1 transition-all duration-300 flex-shrink-0" />
@@ -88,6 +100,40 @@ export const Index = () => {
             </nav>
           </div>
         </Container>
+
+        {/* ── Quick-access cards ─────────────────────────────── */}
+        <section className="pt-2 sm:pt-3 lg:pt-4 pb-6 sm:pb-8 lg:pb-10">
+          <Container>
+            <div className="text-center mb-4 sm:mb-6">
+              <p className="eyebrow mb-3">{t.home.explore}</p>
+              <h2 className="font-display text-2xl sm:text-3xl font-normal tracking-[-0.02em] text-[#1a1a18]">
+                {t.home.discoverMore}
+              </h2>
+            </div>
+
+            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3 sm:gap-4">
+              {QUICK_LINK_CONFIGS.map(({ to, icon }, i) => {
+                const labels = [t.home.quickProjects, t.home.quickProperties, t.home.quickAbout, t.home.quickGuide, t.home.quickInvest, t.home.quickMap];
+                const label = labels[i];
+                return (
+                <a
+                  key={to}
+                  href={to}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group relative flex flex-col items-center gap-2 p-3 sm:p-4 rounded-2xl bg-white border border-[#ece5d9] hover:border-[#c9a961] transition-all duration-300 hover:shadow-[0_16px_40px_-12px_rgba(26,26,24,0.18)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#7B5EA7]/30"
+                >
+                  <img src={icon} alt={label} className="w-16 h-16 object-contain group-hover:scale-110 transition-transform duration-300" />
+
+                  <span className="text-[12px] sm:text-[13px] font-semibold text-[#1a1a18] leading-tight text-center">
+                    {label}
+                  </span>
+                </a>
+              );
+              })}
+            </div>
+          </Container>
+        </section>
       </main>
 
       <PageFooter text={t.home.footer} />

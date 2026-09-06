@@ -12,7 +12,7 @@ export const FunnelCard = ({
 }: PropsWithChildren<{ className?: string }>) => (
   <div
     className={cn(
-      "w-full bg-white border border-[#ece5d9] rounded-[1.75rem] shadow-[0_20px_50px_-30px_rgba(26,26,24,0.35)] p-6 sm:p-8",
+      "w-full bg-white border border-[#ece5d9] rounded-[1.75rem] shadow-[0_20px_50px_-30px_rgba(26,26,24,0.35)] p-4 sm:p-5 min-h-[380px] sm:min-h-[420px]",
       className,
     )}
   >

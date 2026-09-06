@@ -31,3 +31,29 @@ export const CONTACT_DEFAULT_VALUES: ContactFormValues = {
   email: "",
   consent: false,
 };
+
+/* ------------------------------------------------------------------ */
+/* Newsletter-only schema (name + email — no phone)                    */
+/* ------------------------------------------------------------------ */
+
+export type NewsletterFormValues = {
+  name: string;
+  phone: string;
+  email: string;
+  consent: boolean;
+};
+
+export const createNewsletterSchema = (m: { nameError: string; phoneError: string; emailError: string; consentError: string }) =>
+  z.object({
+    name: z.string().trim().min(1, m.nameError),
+    phone: z.string().optional(),
+    email: z.string().trim().min(1, m.emailError).email(m.emailError),
+    consent: z.boolean().refine((v) => v === true, { message: m.consentError }),
+  });
+
+export const NEWSLETTER_DEFAULT_VALUES: NewsletterFormValues = {
+  name: "",
+  phone: "",
+  email: "",
+  consent: false,
+};
